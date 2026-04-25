@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entropix Solutions</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">p"
+      
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background: #030712;
+      }
+
+      /* Glow */
+      .glow {
+        box-shadow: 0 0 40px rgba(6, 182, 212, 0.3);
+      }
+
+      /* Button hover */
+      .btn-hover:hover {
+        background: #00e5cc;
+        color: black;
+      }
+
+      .entropix-text {
+        font-family: "Orbitron", sans-serif;
+        letter-spacing: 0.25em;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+
+  <body class="text-white">
+    <!-- HEADER -->
+    <header
+      class="fixed w-full z-50 bg-[#030712]/80 backdrop-blur-md border-b border-white/10"
+    >
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <!-- LOGO -->
+        <img src="images/logo.png" class="h-10" />
+
+        <!-- NAV -->
+        <nav
+          class="hidden md:flex gap-10 text-xs tracking-widest text-gray-400"
+        >
+          <a href="#" class="text-cyan-400 border-b-2 border-cyan-400 pb-1"
+            >HOME</a
+          >
+          <a href="#services" class="hover:text-white">SERVICES</a>
+          <a href="#about" class="hover:text-white">ABOUT</a>
+          <a href="#" class="hover:text-white">METHODOLOGY</a>
+          <a href="#contact" class="hover:text-white">CONTACT</a>
+        </nav>
+
+        <!-- CTA -->
+        <button
+          class="bg-gradient-to-r from-cyan-400 to-blue-500 text-black px-6 py-2 text-xs font-bold tracking-widest"
+        >
+          GET OPTIMIZATION
+        </button>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="pt-40 pb-32 relative">
+      <!-- Glow background -->
+      <div
+        class="absolute right-0 top-1/2 w-[600px] h-[600px] bg-cyan-500/20 blur-[120px] rounded-full"
+      ></div>
+
+      <div
+        class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center"
+      >
+        <!-- LEFT -->
+        <div>
+          <p class="text-cyan-400 tracking-[0.3em] text-xs mb-6">
+            ARCHITECTING THE FUTURE OF INTELLIGENCE
+          </p>
+
+          <!-- BIG TEXT -->
+          <h1 class="entropix-text text-5xl md:text-7xl mb-4">ENTROPIX</h1>
+
+          <!-- GRADIENT TEXT -->
+          <h2
+            class="entropix-text text-2xl md:text-3xl mb-8 bg-gradient-to-r from-purple-500 to-cyan-400 bg-clip-text text-transparent tracking-[0.4em]"
+          >
+            SOLUTIONS
+          </h2>
+
+          <p class="text-gray-400 max-w-lg mb-10">
+            Pioneering advanced AI and cloud infrastructures for
+            mission-critical systems.
+          </p>
+
+          <button
+            class="border border-cyan-400 px-6 py-3 text-xs tracking-widest btn-hover transition"
+          >
+            DISCOVER OUR SOLUTIONS →
+          </button>
+        </div>
+
+        <!-- RIGHT (Globe Image) -->
+        <div>
+          <img
+            src="https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=1600"
+            class="rounded-xl opacity-80 glow"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="py-20">
+      <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-6">
+        <div
+          class="border border-white/10 p-6 hover:border-cyan-400 transition"
+        >
+          <h3 class="text-lg mb-2">CLOUD INFRASTRUCTURE</h3>
+          <p class="text-gray-400 text-sm">Scalable, secure cloud systems.</p>
+        </div>
+
+        <div class="border border-cyan-400 p-6 bg-cyan-400/5">
+          <h3 class="text-lg mb-2">AI OPTIMIZATION</h3>
+          <p class="text-gray-400 text-sm">Advanced AI architectures.</p>
+        </div>
+
+        <div
+          class="border border-white/10 p-6 hover:border-cyan-400 transition"
+        >
+          <h3 class="text-lg mb-2">CYBERSECURITY</h3>
+          <p class="text-gray-400 text-sm">Enterprise protection systems.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-20 border-t border-white/10">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-cyan-400 tracking-widest text-xs mb-6">ABOUT</h2>
+
+        <p class="text-gray-400 leading-relaxed">
+          At Entropix Solutions, we transform uncertainty into intelligent
+          outcomes...
+        </p>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-10 border-t border-white/10 text-center text-gray-500">
+      © 2026 Entropix Solutions
+    </footer>
+  </body>
+</html>
