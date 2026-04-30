@@ -9,7 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -41,21 +41,23 @@
           >
           <a href="#services" class="hover:text-white">SERVICES</a>
           <a href="#about" class="hover:text-white">ABOUT</a>
-          <a href="#" class="hover:text-white">METHODOLOGY</a>
+          <a href="#methodology" class="hover:text-white">METHODOLOGY</a>
           <a href="#contact" class="hover:text-white">CONTACT</a>
         </nav>
 
         <!-- CTA -->
-        <button
-          class="bg-gradient-to-r from-cyan-400 to-blue-500 text-black px-6 py-2 text-xs font-bold tracking-widest"
-        >
-          GET OPTIMIZATION
-        </button>
+<button
+  onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })"
+  class="relative bg-gradient-to-r from-cyan-400 to-blue-500 text-black px-6 py-2 text-xs font-bold tracking-widest rounded-md transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(34,211,238,0.6)]"
+>
+  <span class="relative z-10">OPTIMIZE MY BUSINESS</span>
+  <span class="absolute inset-0 rounded-md bg-white/10 opacity-0 hover:opacity-100 transition"></span>
+</button>
       </div>
     </header>
 
     <!-- HERO -->
-    <section class="pt-40 pb-32 relative">
+    <section class="pt-40 pb-16 relative">
       <!-- Glow background -->
       <div
         class="absolute right-0 top-1/2 w-[600px] h-[600px] bg-cyan-500/20 blur-[120px] rounded-full"
@@ -67,7 +69,7 @@
         <!-- LEFT -->
         <div class="slide-in-left delay-150">
           <p class="text-cyan-400 tracking-[0.3em] text-xs mb-6">
-            ARCHITECTING THE FUTURE OF INTELLIGENCE
+            AI · PREDICTIVE INTELLIGENCE · MATHEMATICAL SOLUTIONS
           </p>
 
           <!-- BIG TEXT -->
@@ -81,8 +83,8 @@
           </h2>
 
           <p class="text-gray-400 max-w-lg mb-10 uppercase tracking-widest text-sm font-light">
-            Pioneering advanced AI and cloud infrastructures for
-            mission-critical systems.
+            Harnessing AI and cloud technologies for next-generation
+            enterprise intelligence.
           </p>
 
           <a
@@ -105,18 +107,41 @@
       </div>
     </section>
 
+    <!-- Equation Strip -->
+<div class="eq-strip my-6">
+  <div class="eq-inner">
+    <span>∇L(θ) = (1/n) Σᵢ ∂ℓ(ŷᵢ, yᵢ)/∂θ</span>
+    <span class="hi">P(y|x) = softmax(Wx + b)</span>
+    <span>KL(P ∥ Q) = Σ P(x) log[P(x)/Q(x)]</span>
+    <span class="hi">E[X] = ∫x·f(x)dx</span>
+    <span>σ(z) = 1 / (1 + e⁻ᶻ)</span>
+    <span class="hi">Var(X) = E[X²] − (E[X])²</span>
+    <span>Cov(X,Y) = E[(X−μₓ)(Y−μᵧ)]</span>
+    <span class="hi">θ* = argmin L(θ)</span>
+    <!-- repeat for infinite scroll -->
+    <span>∇L(θ) = (1/n) Σᵢ ∂ℓ(ŷᵢ, yᵢ)/∂θ</span>
+    <span class="hi">P(y|x) = softmax(Wx + b)</span>
+    <span>KL(P ∥ Q) = Σ P(x) log[P(x)/Q(x)]</span>
+    <span class="hi">E[X] = ∫x·f(x)dx</span>
+    <span>σ(z) = 1 / (1 + e⁻ᶻ)</span>
+    <span class="hi">Var(X) = E[X²] − (E[X])²</span>
+    <span>Cov(X,Y) = E[(X−μₓ)(Y−μᵧ)]</span>
+    <span class="hi">θ* = argmin L(θ)</span>
+  </div>
+</div>
+
     <!-- SERVICES -->
-    <section id="services" class="pt-0 pb-20">
+    <section id="services" class="pt-6 pb-8">
       <div class="max-w-7xl mx-auto px-6">
         <div class="mb-10 text-left">
           <p class="text-cyan-400 tracking-[0.5em] text-sm md:text-base font-semibold mb-3">SERVICES</p>
           <p class="text-gray-400 max-w-2xl mt-3">
-            Focused AI, cloud, and security solutions designed for modern enterprises.
+            Cutting-edge AI, cloud, and security solutions engineered for elite enterprises.
           </p>
         </div>
 
         <div class="grid md:grid-cols-3 gap-6">
-          <div class="border-4 border-cyan-400 p-10 h-60 bg-cyan-400/5 pop-in delay-300">
+          <div class="border-4 border-cyan-400 p-10 h-80 bg-cyan-400/5 pop-in delay-300">
             <div class="flex items-center justify-between gap-6">
               <img
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvsv_oK7wdrokR-xsWFQS2MwywZ0ru-DGNgw&s&w=320&q=80"
@@ -130,7 +155,7 @@
             </div>
           </div>
 
-        <div class="border-4 border-cyan-400 p-10 h-60 bg-cyan-400/5 pop-in delay-450">
+        <div class="border-4 border-cyan-400 p-10 h-80 bg-cyan-400/5 pop-in delay-450">
           <div class="flex items-center justify-between gap-6">
             <img
               src="images/tutor.jpeg"
@@ -144,7 +169,7 @@
           </div>
         </div>
 
-        <div class="border-4 border-cyan-400 p-10 h-60 bg-cyan-400/5 pop-in delay-600">
+        <div class="border-4 border-cyan-400 p-10 h-80 bg-cyan-400/5 pop-in delay-600">
           <div class="flex items-center justify-between gap-6">
             <img
               src="https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=320&q=80"
@@ -161,12 +186,12 @@
     </section>
 
 <!-- TESTIMONIALS -->
-<section id="testimonials" class="py-24 bg-[#030712] border-t border-white/10">
+<section id="testimonials" class="py-10 bg-[#030712] border-t border-white/10">
   <div class="max-w-7xl mx-auto px-6">
 
     <!-- Title -->
     <div class="text-center mb-16">
-      <h2 class="text-cyan-400 tracking-widest text-xl mb-4">TESTIMONIALS</h2>
+      <h2 class="text-cyan-400 tracking-[0.5em] text-sm md:text-base font-semibold mb-3">TESTIMONIALS</h2>
       <h3 class="text-3xl md:text-2xl font-bold text-white">
         What Our Clients Say
       </h3>
@@ -219,13 +244,64 @@
   </div>
 </section>
 
+    <!-- METHODOLOGY -->
+    <section id="methodology" class="py-20 border-t border-white/10 reveal">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="mb-10 text-left reveal delay-150">
+          <p class="text-cyan-400 tracking-[0.5em] text-sm md:text-base font-semibold mb-3">METHODOLOGY</p>
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Math-first. Results-driven.</h2>
+          <p class="text-gray-400 max-w-2xl mt-3">
+            We build on rigorous probabilistic foundations — Bayesian inference, gradient optimization, and information theory — designed for production-grade forecasting and decision-ready intelligence.
+          </p>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2">
+          <div class="border border-white/10 rounded-3xl bg-white/5 p-8 reveal transition-all hover:border-cyan-400/30 hover:bg-white/10 delay-150">
+            <div class="text-cyan-400 text-xs tracking-[0.4em] mb-2">01 — INGEST</div>
+            <h3 class="text-xl font-semibold mb-3">Unified Signal Capture</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Structured and unstructured streams are ingested via high-throughput pipelines with schema-on-read flexibility. Every signal is timestamped, normalized, and encoded.
+            </p>
+            <div class="mt-5 text-cyan-300 text-sm font-mono"><marquee behavior="scroll" direction="left" scrollamount="5">X = {x₁, x₂, ..., xₙ} ∈ ℝᵈ</marquee></div>
+          </div>
+
+          <div class="border border-white/10 rounded-3xl bg-white/5 p-8 reveal transition-all hover:border-cyan-400/30 hover:bg-white/10 delay-300">
+            <div class="text-cyan-400 text-xs tracking-[0.4em] mb-2">02 — LEARN</div>
+            <h3 class="text-xl font-semibold mb-3">Probabilistic Modeling</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Ensemble methods and deep probabilistic networks are trained per domain, optimized via stochastic gradient descent with adaptive learning rate schedules.
+            </p>
+            <div class="mt-5 text-cyan-300 text-sm font-mono"><marquee behavior="scroll" direction="left" scrollamount="5">θ ← θ − η · ∇θ J(θ; xᵢ; yᵢ)</marquee></div>
+          </div>
+
+          <div class="border border-white/10 rounded-3xl bg-white/5 p-8 reveal transition-all hover:border-cyan-400/30 hover:bg-white/10 delay-450">
+            <div class="text-cyan-400 text-xs tracking-[0.4em] mb-2">03 — PREDICT</div>
+            <h3 class="text-xl font-semibold mb-3">Calibrated Forecasting</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Outputs are accompanied by confidence intervals derived from epistemic uncertainty quantification — giving you not just a prediction, but a probability distribution over outcomes.
+            </p>
+            <div class="mt-5 text-cyan-300 text-sm font-mono"><marquee behavior="scroll" direction="left" scrollamount="5">ŷ ± 1.96 · σ / √n (95% CI)</marquee></div>
+          </div>
+
+          <div class="border border-white/10 rounded-3xl bg-white/5 p-8 reveal transition-all hover:border-cyan-400/30 hover:bg-white/10 delay-600">
+            <div class="text-cyan-400 text-xs tracking-[0.4em] mb-2">04 — ACT</div>
+            <h3 class="text-xl font-semibold mb-3">Decision-Ready Outputs</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Predictions surface as structured signals through REST APIs, webhooks, or native integrations — directly triggering workflows, alerts, or BI dashboards.
+            </p>
+            <div class="mt-5 text-cyan-300 text-sm font-mono"><marquee behavior="scroll" direction="left" scrollamount="5">argmax_a E[R(s, a) | π, θ]</marquee></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ABOUT -->
-    <section id="about" class="py-20 border-t border-white/10">
+    <section id="about" class="py-10 border-t border-white/10">
       <div class="max-w-7xl mx-auto px-6">
         <div class="mb-10 text-left">
           <p class="text-cyan-400 tracking-[0.5em] text-sm md:text-base font-semibold mb-3">ABOUT US</p>
           <p class="text-gray-400 max-w-2xl mt-3">
-            At Entropix Solutions, we transform uncertainty into intelligent outcomes. Inspired by mathematical principles such as Pi (π), modulus, and gradient optimization, we build advanced IT and AI-driven solutions that empower businesses to predict, adapt, and lead in an ever-evolving digital landscape.
+            At Entropix Solutions, we redefine intelligence through advanced algorithms and scalable architectures. Inspired by mathematical precision and gradient optimization, we deliver transformative IT and AI solutions that empower enterprises to anticipate, adapt, and dominate in a data-driven world.
           </p>
         </div>
 
@@ -274,14 +350,12 @@
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="py-20 border-t border-white/10">
+    <section id="contact" class="py-10 border-t border-white/10">
       <div class="max-w-7xl mx-auto px-6">
         <div class="mb-10 text-left">
-          <p class="text-cyan-400 tracking-[0.5em] text-sm md:text-base font-semibold mb-3">CONTACT</p>
-          <h2 class="text-3xl md:text-2xl font-bold text-white mb-4">Get in Touch</h2>
-          <p class="text-gray-400 max-w-2xl leading-relaxed">
-            Reach out to discuss AI, cloud, and cybersecurity solutions tailored to your business. We deliver intelligent systems with precision, reliability, and secure scale.
-          </p>
+          <p class="text-cyan-400 tracking-[0.5em] text-sm md:text-base font-semibold mb-3">CONTACT US</p>
+          <h2>The <em>future</em> is predictable.</h2>
+  <p>Join 400+ teams on the waitlist. Early access opens Q3 2026.</p>
         </div>
 
         <div class="grid md:grid-cols-3 gap-6">
@@ -315,5 +389,17 @@
     <footer class="py-10 border-t border-white/10 text-center text-gray-500">
       © 2026 Entropix Solutions
     </footer>
+
+    <script>
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+    </script>
   </body>
 </html>
