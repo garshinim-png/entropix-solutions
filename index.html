@@ -18,6 +18,61 @@
 
   </head>
 
+  <script>
+const canvas = document.getElementById("ai-bg");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+for (let i = 0; i < 80; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 2,
+    dx: (Math.random() - 0.5) * 0.5,
+    dy: (Math.random() - 0.5) * 0.5
+  });
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  particles.forEach(p => {
+    p.x += p.dx;
+    p.y += p.dy;
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(34,211,238,0.7)";
+    ctx.fill();
+
+    // connect lines
+    particles.forEach(p2 => {
+      let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+      if (dist < 120) {
+        ctx.strokeStyle = "rgba(34,211,238,0.05)";
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.stroke();
+      }
+    });
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+</script>
+
   <body class="text-white">
     <!-- HEADER -->
     <header
@@ -55,6 +110,9 @@
 </button>
       </div>
     </header>
+
+    <!-- AI PARTICLES BACKGROUND -->
+<canvas id="ai-bg"></canvas>
 
     <!-- HERO -->
     <section class="pt-40 pb-16 relative">
@@ -106,6 +164,8 @@
         </div>
       </div>
     </section>
+
+    
 
     <!-- Equation Strip -->
 <div class="eq-strip my-6">
@@ -296,58 +356,180 @@
     </section>
 
     <!-- ABOUT -->
-    <section id="about" class="py-10 border-t border-white/10">
-      <div class="w-full px-20">
-        <div class="mb-10 text-left">
-          <p class="text-cyan-400 tracking-[0.5em] text-sm md:text-base font-semibold mb-3">ABOUT US</p>
-          <p class="text-gray-400 max-w-2xl mt-3">
-            At Entropix Solutions, we redefine intelligence through advanced algorithms and scalable architectures. Inspired by mathematical precision and gradient optimization, we deliver transformative IT and AI solutions that empower enterprises to anticipate, adapt, and dominate in a data-driven world.
-          </p>
-        </div>
+<section id="about" class="py-20 border-t border-white/10">
+  <div class="w-full px-20">
 
-        <p class="text-gray-400 leading-relaxed mb-6">
-          Our name, Entropix, reflects our core philosophy — turning entropy (chaos and randomness) into structured, actionable intelligence. By combining data science, artificial intelligence, and modern software engineering, we help organizations uncover patterns, forecast trends, and make confident decisions.
-        </p>
+    <!-- Title -->
+    <div class="mb-16 reveal">
+      <p class="text-cyan-400 tracking-[0.5em] text-sm font-semibold mb-3">
+        ABOUT US
+      </p>
+      <div class="h-[2px] w-40 bg-gradient-to-r from-cyan-400 to-transparent mb-6 animate-pulse"></div>
 
-        <p class="text-gray-400 leading-relaxed mb-6">
-          We specialize in developing scalable IT products and intelligent systems across areas such as predictive analytics, automation, and enterprise applications. Whether it’s optimizing business processes, enhancing decision-making, or designing future-ready digital platforms, our solutions are engineered with precision and purpose.
-        </p>
+      <h2 class="text-4xl md:text-3xl font-bold mb-6">
+        Turning Data into <span class="text-cyan-400">Predictive Intelligence</span>
+      </h2>
 
-        <p class="text-gray-400 leading-relaxed mb-6">
-          At the heart of our approach lies a mathematical mindset:
-        </p>
+      <!-- <p class="text-gray-400 max-w-3xl leading-relaxed">
+        At <span class="text-white font-semibold">Entropix Solutions</span>, we engineer intelligent systems that convert uncertainty into measurable outcomes. 
+        Powered by artificial intelligence, probabilistic modeling, and mathematical optimization, we enable organizations to move from reactive decision-making to predictive intelligence.
+      </p> -->
+      <p class="text-gray-400 max-w-3xl mt-3 leading-relaxed">
+  Entropix Solutions is an intelligence engine — where data flows, models learn, 
+  and decisions emerge in real-time. We engineer adaptive AI systems that continuously 
+  evolve using probabilistic learning, gradient optimization, and large-scale data processing.
+</p>
+    </div>
 
-        <ul class="text-gray-400 leading-relaxed mb-6 list-disc list-inside">
-          <li>π (Pi) represents precision and infinite possibilities</li>
-          <li>Modulus (|x|) reflects stability and reliability in uncertain environments</li>
-          <li>Gradient symbolizes continuous learning and improvement</li>
-        </ul>
+    
+    <!-- AI METRICS PANEL -->
+<!-- LIVE AI METRICS -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12 mt-24 reveal delay-400">
 
-        <h3 class="text-cyan-400 text-lg mb-4">Our Vision</h3>
-        <p class="text-gray-400 leading-relaxed mb-6">
-          To become a global leader in AI-driven intelligence, where data, mathematics, and technology converge to predict the future and shape smarter, more resilient businesses.
-        </p>
+  <div class="metric-card">
+    <div class="flex justify-between items-center mb-3">
+      <span class="text-xs tracking-widest text-cyan-400">PREDICTION</span>
+      <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+    </div>
+    <h3 id="accuracy">98%</h3>
+    <p>Prediction Accuracy</p>
+  </div>
 
-        <h3 class="text-cyan-400 text-lg mb-4">Our Mission</h3>
-        <p class="text-gray-400 leading-relaxed mb-6">
-          To design and deliver innovative IT and AI solutions that transform complex data into meaningful insights, enabling organizations to anticipate change, optimize performance, and make confident, forward-looking decisions.
-        </p>
+  <div class="metric-card">
+    <div class="flex justify-between items-center mb-3">
+      <span class="text-xs tracking-widest text-cyan-400">LATENCY</span>
+      <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+    </div>
+    <h3 id="latency">120ms</h3>
+    <p>Avg Response Time</p>
+  </div>
 
-        <h3 class="text-cyan-400 text-lg mb-4">Our Core Values</h3>
-        <ol class="text-gray-400 leading-relaxed list-decimal list-inside">
-          <li class="mb-2"><strong>Precision</strong> We are guided by mathematical accuracy, ensuring every solution is reliable, efficient, and impactful.</li>
-          <li class="mb-2"><strong>Innovation</strong> We continuously explore new ideas, technologies, and algorithms to stay ahead in the evolving AI landscape.</li>
-          <li class="mb-2"><strong>Integrity</strong> We build trust through transparency, accountability, and ethical use of data and technology.</li>
-          <li class="mb-2"><strong>Adaptability</strong> Like gradient optimization, we evolve constantly—learning, improving, and responding to change.</li>
-          <li class="mb-2"><strong>Insight-Driven Thinking</strong> We believe in the power of data to reveal patterns, predict outcomes, and guide smarter decisions.</li>
-          <li class="mb-2"><strong>Customer-Centricity</strong> We design solutions that align with our clients’ goals, delivering measurable value and long-term success.</li>
-        </ol>
+  <div class="metric-card">
+    <div class="flex justify-between items-center mb-3">
+      <span class="text-xs tracking-widest text-cyan-400">MODELS</span>
+      <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+    </div>
+    <h3 id="models">24</h3>
+    <p>Active Models</p>
+  </div>
 
-        <p class="text-gray-400 leading-relaxed mt-6 font-semibold">
-          Entropix Solutions — Predict Beyond Possibility.
+  <div class="metric-card">
+    <div class="flex justify-between items-center mb-3">
+      <span class="text-xs tracking-widest text-cyan-400">DATA FLOW</span>
+      <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+    </div>
+    <h3 id="data">320TB</h3>
+    <p>Data Processed</p>
+  </div>
+
+</div>
+
+<!-- LIVE AI DASHBOARD -->
+<div class="mt-14 grid md:grid-cols-2 gap-8 reveal">
+
+  <!-- Activity Feed -->
+  <div class="border border-white/10 rounded-2xl bg-white/5 p-6 backdrop-blur-md">
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="text-cyan-400 text-sm tracking-[0.3em]">LIVE INFERENCE</h3>
+      <span class="text-xs text-green-400 animate-pulse">ONLINE</span>
+    </div>
+
+    <div id="ai-feed" class="space-y-3 text-sm text-gray-300">
+      <div>Initializing models...</div>
+    </div>
+  </div>
+
+  <!-- Signal Bars -->
+  <div class="border border-white/10 rounded-2xl bg-white/5 p-6 backdrop-blur-md">
+    <div class="mb-4">
+      <h3 class="text-cyan-400 text-sm tracking-[0.3em]">NEURAL ACTIVITY</h3>
+    </div>
+
+    <div class="flex items-end gap-2 h-36" id="signal-bars">
+      <div class="w-full bg-cyan-400/70 rounded-t" style="height:30%"></div>
+      <div class="w-full bg-cyan-400/70 rounded-t" style="height:55%"></div>
+      <div class="w-full bg-cyan-400/70 rounded-t" style="height:80%"></div>
+      <div class="w-full bg-cyan-400/70 rounded-t" style="height:45%"></div>
+      <div class="w-full bg-cyan-400/70 rounded-t" style="height:60%"></div>
+      <div class="w-full bg-cyan-400/70 rounded-t" style="height:90%"></div>
+      <div class="w-full bg-cyan-400/70 rounded-t" style="height:40%"></div>
+      <div class="w-full bg-cyan-400/70 rounded-t" style="height:75%"></div>
+    </div>
+  </div>
+
+</div>
+
+    <!-- Cards -->
+    <div class="grid md:grid-cols-3 gap-8 gap-y-2 mt-16">
+
+      <div class="about-card p-8 border border-white/10 rounded-xl bg-white/5 reveal delay-1">
+        <h3 class="text-cyan-400 text-lg mb-3">π — Precision Engine</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Inspired by π, we design systems with infinite scalability and computational precision — ensuring every model and output is mathematically grounded.
         </p>
       </div>
-    </section>
+
+      <div class="about-card p-8 border border-white/10 rounded-xl bg-white/5 reveal delay-2">
+        <h3 class="text-cyan-400 text-lg mb-3">|x| — Stability Layer</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Like modulus, our platforms maintain stability in volatile environments — delivering reliable insights even in uncertain data conditions.
+        </p>
+      </div>
+
+      <div class="about-card p-8 border border-white/10 rounded-xl bg-white/5 reveal delay-3">
+        <h3 class="text-cyan-400 text-lg mb-3">∇ — Learning Systems</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Driven by gradient-based learning, our AI continuously evolves — optimizing performance, improving predictions, and adapting in real time.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Deep AI Description -->
+    <div class="grid md:grid-cols-2 gap-10 gap-y-2 mt-16">
+
+      <div class="reveal delay-1">
+        <h3 class="text-cyan-400 text-lg mb-4">Our Vision</h3>
+        <p class="text-gray-400 leading-relaxed">
+          To pioneer a future where AI-driven intelligence becomes the foundation of every strategic decision — enabling businesses to predict, adapt, and lead with confidence.
+        </p>
+      </div>
+
+      <div class="reveal delay-2">
+        <h3 class="text-cyan-400 text-lg mb-4">Our Mission</h3>
+        <p class="text-gray-400 leading-relaxed">
+          To build intelligent, scalable systems that transform raw data into foresight — combining machine learning, automation, and cloud-native architectures.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Core Values -->
+    <div class="mt-16 reveal delay-3">
+      <h3 class="text-cyan-400 text-lg mb-6">Core Principles</h3>
+
+      <div class="grid md:grid-cols-3 gap-6 text-sm">
+
+        <div class="p-6 border border-white/10 rounded-xl bg-white/5">
+          <strong class="text-white">Precision</strong>
+          <p class="text-gray-400 mt-2">Mathematical accuracy in every solution.</p>
+        </div>
+
+        <div class="p-6 border border-white/10 rounded-xl bg-white/5">
+          <strong class="text-white">Adaptability</strong>
+          <p class="text-gray-400 mt-2">Systems that evolve with your data.</p>
+        </div>
+
+        <div class="p-6 border border-white/10 rounded-xl bg-white/5">
+          <strong class="text-white">Intelligence</strong>
+          <p class="text-gray-400 mt-2">Insights that drive real decisions.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
 
     <!-- CONTACT -->
     <section id="contact" class="py-10 border-t border-white/10">
@@ -361,7 +543,7 @@
         <div class="grid md:grid-cols-3 gap-6">
           <div class="border border-cyan-400 p-8 rounded-2xl bg-cyan-400/5">
             <h3 class="text-white text-lg mb-3">Email</h3>
-            <p class="text-gray-400 text-sm">care@entropix.prov</p>
+            <p class="text-gray-400 text-sm">care@entropix.pro</p>
           </div>
           <div class="border border-cyan-400 p-8 rounded-2xl bg-cyan-400/5">
             <h3 class="text-white text-lg mb-3">Phone</h3>
@@ -369,7 +551,7 @@
           </div>
           <div class="border border-cyan-400 p-8 rounded-2xl bg-cyan-400/5">
             <h3 class="text-white text-lg mb-3">Location</h3>
-            <p class="text-gray-400 text-sm">Remote / Global</p>
+            <p class="text-gray-400 text-sm">South East Asia</p>
           </div>
         </div>
 
@@ -401,5 +583,9 @@
 
       document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
     </script>
-  </body>
+
+  
+<script src="js/script.js"></script>
+</body>
+</body>
 </html>
