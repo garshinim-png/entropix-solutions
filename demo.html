@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Entropix Demo Video</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body class="text-white min-h-screen">
@@ -24,49 +27,106 @@
 
         <!-- NAV -->
         <nav
-          class="hidden md:flex gap-10 text-xs tracking-widest text-gray-400"
+         class="hidden md:flex gap-12 text-xs tracking-widest text-gray-400 justify-center md:justify-start"
         >
-          <a href="index.html" class="text-cyan-400 border-b-2 border-cyan-400 pb-1"
+          <a href="#" class="text-cyan-400 border-b-2 border-cyan-400 pb-1"
             >HOME</a
           >
           <a href="index.html#services" class="hover:text-white">SERVICES</a>
           <a href="index.html#about" class="hover:text-white">ABOUT</a>
           <a href="index.html#methodology" class="hover:text-white">METHODOLOGY</a>
-          <a href="index.html#contact" class="hover:text-white">CONTACT</a>
+          <a href="index.html#contact" class="hover:text-white">JOIN US</a>
         </nav>
 
         <!-- CTA -->
-        
       </div>
     </header>
 
     <div class="max-w-6xl mx-auto px-6 pt-32 pb-20">
       <div>
-          <p class="text-cyan-400 tracking-[0.3em] text-sm mb-6">
-           OUR PRODUCT
-          </p>
+        <p class="text-cyan-400 tracking-[0.3em] text-sm mb-6">OUR PRODUCTS</p>
 
-          <!-- BIG TEXT -->
-          <h1 class="entropix-text text-5xl md:text-3xl mb-4">ENTROPIX SOLUTIONS</h1>
+        <!-- BIG TEXT -->
+        <h1 class="entropix-text text-5xl md:text-3xl mb-4">
+          ENTROPIX SOLUTIONS
+        </h1>
         <h2
-            class="entropix-text text-2xl md:text-sm mb-8 bg-gradient-to-r from-purple-500 to-cyan-400 bg-clip-text text-transparent tracking-[0.4em]"
-          >
-            
-          </h2>
+          class="entropix-text text-2xl md:text-sm mb-8 bg-gradient-to-r from-purple-500 to-cyan-400 bg-clip-text text-transparent tracking-[0.4em]"
+        ></h2>
       </div>
+      <!-- AI DEMO GRID -->
+      <div class="mt-12 space-y-16">
+        <!-- FEATURED VIDEO -->
+        <div
+          class="group relative rounded-3xl overflow-hidden border border-cyan-400/20 shadow-2xl shadow-cyan-500/10"
+        >
+          <video
+            id="mainVideo"
+            class="w-full h-[500px] object-cover transition duration-700 group-hover:scale-105"
+            muted
+            loop
+            playsinline
+          >
+            <source src="images/EntropixAI.mp4" type="video/mp4" />
+          </video>
 
-      <div class="bg-[#08101d] rounded-3xl border border-cyan-400/20 p-6 shadow-2xl shadow-cyan-500/10">
-        <video controls class="w-full rounded-2xl bg-black">
-          <source src="images/EntropixAI.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+          <!-- Overlay -->
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"
+          ></div>
+
+          <!-- Content -->
+          <div class="absolute bottom-10 left-10">
+            <h2 class="text-3xl font-bold mb-2">AI Intelligence Engine</h2>
+            <p class="text-gray-300 max-w-lg mb-4">
+              Real-time prediction, adaptive learning, and intelligent
+              automation.
+            </p>
+
+            <button
+              id="playBtn"
+              class="bg-cyan-400 text-black px-6 py-2 text-xs font-bold tracking-widest hover:bg-cyan-300 transition"
+            >
+              ▶ PLAY FULL DEMO
+            </button>
+          </div>
+
+          <!-- Live indicator -->
+          <div
+            class="absolute top-6 right-6 text-xs text-red-400 flex items-center gap-2"
+          >
+            <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+            LIVE AI
+          </div>
+        </div>
+
+        <!-- SECONDARY VIDEOS -->
+        <div class="grid md:grid-cols-2 gap-10">
+          <div class="video-card group">
+            <video muted loop class="preview-video">
+              <source src="images/EntropixAI2.mp4" type="video/mp4" />
+            </video>
+            <div class="video-overlay">Predictive Models</div>
+          </div>
+
+          <div class="video-card group">
+            <video muted loop class="preview-video">
+              <source src="images/EntropixAI3.mp4" type="video/mp4" />
+            </video>
+            <div class="video-overlay">Automation Engine</div>
+          </div>
+        </div>
       </div>
 
       <div class="mt-10">
-        <a href="index.html" class="bg-gradient-to-r from-cyan-400 to-blue-500 text-black px-6 py-2 text-xs font-bold tracking-widest transition" rel="noopener noreferrer">
-          Return to Homepage
-        </a>
+          <a
+            href="index.html"
+            class="inline-block border border-cyan-400 px-6 py-3 text-xs tracking-widest btn-hover transition duration-300 ease-out hover:scale-105"
+          >
+            RETURN TO HOMEPAGE →
+          </a>
       </div>
     </div>
   </body>
+  <script src="js/script.js"></script>
 </html>

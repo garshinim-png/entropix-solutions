@@ -325,6 +325,83 @@ canvas {
 #network {
   opacity: 0.25;
 }
+/* Video cards */
+.video-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: all 0.4s ease;
+}
+
+.video-card:hover {
+  transform: scale(1.05);
+  border-color: rgba(34,211,238,0.5);
+}
+
+.preview-video {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  filter: brightness(0.6);
+  transition: 0.5s;
+}
+
+.video-card:hover .preview-video {
+  filter: brightness(1);
+}
+
+.video-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+/* Sound reactive glow */
+.sound-glow {
+  box-shadow: 0 0 20px rgba(34,211,238,0.3);
+}/* Video cards */
+.video-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: all 0.4s ease;
+}
+
+.video-card:hover {
+  transform: scale(1.05);
+  border-color: rgba(34,211,238,0.5);
+}
+
+.preview-video {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  filter: brightness(0.6);
+  transition: 0.5s;
+}
+
+.video-card:hover .preview-video {
+  filter: brightness(1);
+}
+
+.video-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+/* Sound reactive glow */
+.sound-glow {
+  box-shadow: 0 0 20px rgba(34,211,238,0.3);
+}
 
 #chart {
   box-shadow: 0 0 30px rgba(34,211,238,0.15);

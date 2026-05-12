@@ -13,65 +13,63 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="css/style.css">
-
-
+    <link rel="stylesheet" href="css/style.css" />
   </head>
 
   <script>
-const canvas = document.getElementById("ai-bg");
-const ctx = canvas.getContext("2d");
+    const canvas = document.getElementById("ai-bg");
+    const ctx = canvas.getContext("2d");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-let particles = [];
+    let particles = [];
 
-for (let i = 0; i < 80; i++) {
-  particles.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    r: Math.random() * 2,
-    dx: (Math.random() - 0.5) * 0.5,
-    dy: (Math.random() - 0.5) * 0.5
-  });
-}
+    for (let i = 0; i < 80; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2,
+        dx: (Math.random() - 0.5) * 0.5,
+        dy: (Math.random() - 0.5) * 0.5,
+      });
+    }
 
-function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  particles.forEach(p => {
-    p.x += p.dx;
-    p.y += p.dy;
+      particles.forEach((p) => {
+        p.x += p.dx;
+        p.y += p.dy;
 
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-    ctx.fillStyle = "rgba(34,211,238,0.7)";
-    ctx.fill();
-
-    // connect lines
-    particles.forEach(p2 => {
-      let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-      if (dist < 120) {
-        ctx.strokeStyle = "rgba(34,211,238,0.05)";
         ctx.beginPath();
-        ctx.moveTo(p.x, p.y);
-        ctx.lineTo(p2.x, p2.y);
-        ctx.stroke();
-      }
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(34,211,238,0.7)";
+        ctx.fill();
+
+        // connect lines
+        particles.forEach((p2) => {
+          let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+          if (dist < 120) {
+            ctx.strokeStyle = "rgba(34,211,238,0.05)";
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
+        });
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     });
-  });
-
-  requestAnimationFrame(animate);
-}
-
-animate();
-
-window.addEventListener("resize", () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-});
-</script>
+  </script>
 
   <body class="text-white">
     <!-- HEADER -->
@@ -89,7 +87,7 @@ window.addEventListener("resize", () => {
 
         <!-- NAV -->
         <nav
-          class="hidden md:flex gap-10 text-xs tracking-widest text-gray-400"
+          class="hidden md:flex gap-12 text-xs tracking-widest text-gray-400 justify-center md:justify-start"
         >
           <a href="#" class="text-cyan-400 border-b-2 border-cyan-400 pb-1"
             >HOME</a
@@ -97,22 +95,27 @@ window.addEventListener("resize", () => {
           <a href="#services" class="hover:text-white">SERVICES</a>
           <a href="#about" class="hover:text-white">ABOUT</a>
           <a href="#methodology" class="hover:text-white">METHODOLOGY</a>
-          <a href="#contact" class="hover:text-white">CONTACT</a>
         </nav>
 
         <!-- CTA -->
-<button
-  onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })"
-  class="relative bg-gradient-to-r from-cyan-400 to-blue-500 text-black px-6 py-2 text-xs font-bold tracking-widest rounded-md transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(34,211,238,0.6)]"
->
-  <span class="relative z-10">OPTIMIZE MY BUSINESS</span>
-  <span class="absolute inset-0 rounded-md bg-white/10 opacity-0 hover:opacity-100 transition"></span>
-</button>
+        <button
+          onclick="
+            document
+              .getElementById('contact')
+              .scrollIntoView({ behavior: 'smooth' })
+          "
+          class="relative bg-gradient-to-r from-cyan-400 to-blue-500 text-black px-6 py-2 text-xs font-bold tracking-widest rounded-md transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(34,211,238,0.6)]"
+        >
+          <span class="relative z-10">OPTIMIZE MY BUSINESS</span>
+          <span
+            class="absolute inset-0 rounded-md bg-white/10 opacity-0 hover:opacity-100 transition"
+          ></span>
+        </button>
       </div>
     </header>
 
     <!-- AI PARTICLES BACKGROUND -->
-<canvas id="ai-bg"></canvas>
+    <canvas id="ai-bg"></canvas>
 
     <!-- HERO -->
     <section class="pt-40 pb-16 relative">
@@ -121,9 +124,7 @@ window.addEventListener("resize", () => {
         class="absolute right-0 top-1/2 w-[600px] h-[600px] bg-cyan-500/20 blur-[120px] rounded-full"
       ></div>
 
-      <div
-        class="w-full px-20 grid md:grid-cols-2 gap-10 items-center"
-      >
+      <div class="w-full px-20 grid md:grid-cols-2 gap-10 items-center">
         <!-- LEFT -->
         <div class="slide-in-left delay-150">
           <p class="text-cyan-400 tracking-[0.3em] text-xs mb-6">
@@ -140,15 +141,15 @@ window.addEventListener("resize", () => {
             SOLUTIONS
           </h2>
 
-          <p class="text-gray-400 max-w-lg mb-10 uppercase tracking-widest text-sm font-light">
-            Harnessing AI and cloud technologies for next-generation
-            enterprise intelligence.
+          <p
+            class="text-gray-400 max-w-lg mb-10 uppercase tracking-widest text-sm font-light"
+          >
+            Harnessing AI and cloud technologies for next-generation enterprise
+            intelligence.
           </p>
 
           <a
             href="demo.html"
-            target="_blank"
-            rel="noopener noreferrer"
             class="inline-block border border-cyan-400 px-6 py-3 text-xs tracking-widest btn-hover transition duration-300 ease-out hover:scale-105"
           >
             DISCOVER OUR SOLUTIONS →
@@ -165,404 +166,668 @@ window.addEventListener("resize", () => {
       </div>
     </section>
 
-    
-
     <!-- Equation Strip -->
-<div class="eq-strip my-6">
-  <div class="eq-inner">
-    <span>∇L(θ) = (1/n) Σᵢ ∂ℓ(ŷᵢ, yᵢ)/∂θ</span>
-    <span class="hi">P(y|x) = softmax(Wx + b)</span>
-    <span>KL(P ∥ Q) = Σ P(x) log[P(x)/Q(x)]</span>
-    <span class="hi">E[X] = ∫x·f(x)dx</span>
-    <span>σ(z) = 1 / (1 + e⁻ᶻ)</span>
-    <span class="hi">Var(X) = E[X²] − (E[X])²</span>
-    <span>Cov(X,Y) = E[(X−μₓ)(Y−μᵧ)]</span>
-    <span class="hi">θ* = argmin L(θ)</span>
-    <!-- repeat for infinite scroll -->
-    <span>∇L(θ) = (1/n) Σᵢ ∂ℓ(ŷᵢ, yᵢ)/∂θ</span>
-    <span class="hi">P(y|x) = softmax(Wx + b)</span>
-    <span>KL(P ∥ Q) = Σ P(x) log[P(x)/Q(x)]</span>
-    <span class="hi">E[X] = ∫x·f(x)dx</span>
-    <span>σ(z) = 1 / (1 + e⁻ᶻ)</span>
-    <span class="hi">Var(X) = E[X²] − (E[X])²</span>
-    <span>Cov(X,Y) = E[(X−μₓ)(Y−μᵧ)]</span>
-    <span class="hi">θ* = argmin L(θ)</span>
-  </div>
-</div>
+    <div class="eq-strip my-6">
+      <div class="eq-inner">
+        <span>∇L(θ) = (1/n) Σᵢ ∂ℓ(ŷᵢ, yᵢ)/∂θ</span>
+        <span class="hi">P(y|x) = softmax(Wx + b)</span>
+        <span>KL(P ∥ Q) = Σ P(x) log[P(x)/Q(x)]</span>
+        <span class="hi">E[X] = ∫x·f(x)dx</span>
+        <span>σ(z) = 1 / (1 + e⁻ᶻ)</span>
+        <span class="hi">Var(X) = E[X²] − (E[X])²</span>
+        <span>Cov(X,Y) = E[(X−μₓ)(Y−μᵧ)]</span>
+        <span class="hi">θ* = argmin L(θ)</span>
+        <!-- repeat for infinite scroll -->
+        <span>∇L(θ) = (1/n) Σᵢ ∂ℓ(ŷᵢ, yᵢ)/∂θ</span>
+        <span class="hi">P(y|x) = softmax(Wx + b)</span>
+        <span>KL(P ∥ Q) = Σ P(x) log[P(x)/Q(x)]</span>
+        <span class="hi">E[X] = ∫x·f(x)dx</span>
+        <span>σ(z) = 1 / (1 + e⁻ᶻ)</span>
+        <span class="hi">Var(X) = E[X²] − (E[X])²</span>
+        <span>Cov(X,Y) = E[(X−μₓ)(Y−μᵧ)]</span>
+        <span class="hi">θ* = argmin L(θ)</span>
+      </div>
+    </div>
 
     <!-- SERVICES -->
-    <section id="services" class="pt-6 pb-8">
-      <div class="w-full px-20">
-        <div class="mb-10 text-left">
-          <p class="text-cyan-400 tracking-[0.5em] text-sm md:text-base font-semibold mb-3">SERVICES</p>
-          <p class="text-gray-400 max-w-2xl mt-3">
-            Cutting-edge AI, cloud, and security solutions engineered for elite enterprises.
+    <section id="services" class="pt-16 pb-16 relative overflow-hidden">
+      <!-- Background glow -->
+      <div
+        class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-cyan-500/10 blur-[120px]"
+      ></div>
+
+      <div class="w-full px-20 relative z-10">
+        <!-- Header -->
+        <div class="mb-14 text-left reveal">
+          <p class="text-cyan-400 tracking-[0.5em] text-sm font-semibold mb-3">
+            AI SERVICES
+          </p>
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+            Intelligent Systems.
+            <span class="text-cyan-400">Engineered for Scale.</span>
+          </h2>
+          <p class="text-gray-400 max-w-2xl">
+            Modular AI-powered services designed as high-performance components
+            within your digital ecosystem.
           </p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-6">
-          <div class="border-4 border-cyan-400 p-10 h-80 bg-cyan-400/5 pop-in delay-300">
-            <div class="flex items-center justify-between gap-6">
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvsv_oK7wdrokR-xsWFQS2MwywZ0ru-DGNgw&s&w=320&q=80"
-                alt="Cloud infrastructure icon"
-                class="w-20 h-20 rounded-full object-cover ring-2 ring-cyan-400/40"
-              />
-              <div class="text-right md:text-left">
-                <h3 class="text-lg mb-2">CLOUD INFRASTRUCTURE</h3>
-                <p class="text-gray-400 text-sm">Scalable, secure and resilient cloud infrastructure for connected systems.</p>
+        <!-- GRID -->
+        <div class="grid md:grid-cols-3 gap-10">
+          <!-- CARD 1 -->
+          <div
+            class="ai-card group relative p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl overflow-hidden"
+          >
+            <!-- Glow hover -->
+            <div
+              class="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-cyan-400/20 to-transparent"
+            ></div>
+
+            <!-- Top line animation -->
+            <div
+              class="absolute top-0 left-0 h-[2px] w-0 bg-cyan-400 group-hover:w-full transition-all duration-700"
+            ></div>
+
+            <div class="relative z-10">
+              <div class="mb-6">
+                <div
+                  class="w-14 h-14 rounded-full bg-cyan-400/10 flex items-center justify-center text-cyan-400 text-xl animate-pulse"
+                >
+                  ☁
+                </div>
+              </div>
+
+              <h3 class="text-xl font-semibold mb-3">
+                Cloud Infrastructure AI
+              </h3>
+
+              <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                Self-healing, auto-scaling cloud environments powered by
+                predictive load balancing and intelligent orchestration.
+              </p>
+
+              <div class="text-xs text-cyan-300 font-mono opacity-70">
+                uptime → 99.999% | auto-scale → enabled
               </div>
             </div>
           </div>
 
-        <div class="border-4 border-cyan-400 p-10 h-80 bg-cyan-400/5 pop-in delay-450">
-          <div class="flex items-center justify-between gap-6">
-            <img
-              src="images/tutor.jpeg"
-              alt="AI optimization icon"
-              class="w-20 h-20 rounded-full object-cover ring-2 ring-cyan-400/40"
-            />
-            <div class="text-right md:text-left">
-              <h3 class="text-lg mb-2">EDUCATION TECH PLATFORM </h3>
-              <p class="text-gray-400 text-sm">Digital tutoring solutions that connect students with qualified educators,support real-time learning, personalized guidance, and scalable education delivery.</p>
+          <!-- CARD 2 -->
+          <div
+            class="ai-card group relative p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl overflow-hidden"
+          >
+            <div
+              class="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-purple-500/20 to-transparent"
+            ></div>
+            <div
+              class="absolute top-0 left-0 h-[2px] w-0 bg-purple-400 group-hover:w-full transition-all duration-700"
+            ></div>
+
+            <div class="relative z-10">
+              <div class="mb-6">
+                <div
+                  class="w-14 h-14 rounded-full bg-purple-400/10 flex items-center justify-center text-purple-400 text-xl animate-pulse"
+                >
+                  🧠
+                </div>
+              </div>
+
+              <h3 class="text-xl font-semibold mb-3">AI Education Platform</h3>
+
+              <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                Adaptive learning systems with real-time personalization,
+                student intelligence mapping, and AI tutor optimization.
+              </p>
+
+              <div class="text-xs text-purple-300 font-mono opacity-70">
+                models → adaptive | latency → &lt;120ms
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 3 -->
+          <div
+            class="ai-card group relative p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl overflow-hidden"
+          >
+            <div
+              class="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-blue-500/20 to-transparent"
+            ></div>
+            <div
+              class="absolute top-0 left-0 h-[2px] w-0 bg-blue-400 group-hover:w-full transition-all duration-700"
+            ></div>
+
+            <div class="relative z-10">
+              <div class="mb-6">
+                <div
+                  class="w-14 h-14 rounded-full bg-blue-400/10 flex items-center justify-center text-blue-400 text-xl animate-pulse"
+                >
+                  🔐
+                </div>
+              </div>
+
+              <h3 class="text-xl font-semibold mb-3">Cyber Intelligence</h3>
+
+              <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                AI-driven threat detection with anomaly scoring, behavioral
+                analysis, and automated incident response pipelines.
+              </p>
+
+              <div class="text-xs text-blue-300 font-mono opacity-70">
+                threat score → realtime | defense → autonomous
+              </div>
             </div>
           </div>
         </div>
+      </div>
+    </section>
+    <!-- TESTIMONIALS -->
+    <section
+      id="testimonials"
+      class="py-10 bg-[#030712] border-t border-white/10"
+    >
+      <div class="w-full px-20">
+        <!-- Title -->
+        <div class="text-center mb-16">
+          <h2
+            class="text-cyan-400 tracking-[0.5em] text-sm md:text-base font-semibold mb-3"
+          >
+            TESTIMONIALS
+          </h2>
+          <h3 class="text-3xl md:text-2xl font-bold text-white">
+            What Our Clients Say
+          </h3>
+          <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
+            Trusted by researchers and industry leaders.
+          </p>
+        </div>
 
-        <div class="border-4 border-cyan-400 p-10 h-80 bg-cyan-400/5 pop-in delay-600">
-          <div class="flex items-center justify-between gap-6">
-            <img
-              src="https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=320&q=80"
-              alt="Cybersecurity icon"
-              class="w-20 h-20 rounded-full object-cover ring-2 ring-cyan-400/40"
-            />
-            <div class="text-right md:text-left">
-              <h3 class="text-lg mb-2">CYBERSECURITY</h3>
-              <p class="text-gray-400 text-sm">Cybersecurity compliance and protection for scalable digital solutions.</p>
+        <!-- Cards -->
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Card 1 -->
+          <div
+            class="p-8 border border-white/10 rounded-lg bg-white/5 hover:border-cyan-400 transition"
+          >
+            <p class="text-gray-300 text-sm leading-relaxed mb-6">
+              “Entropix Solutions transformed our data into actionable insights.
+              Their AI capabilities gave us a real competitive advantage.”
+            </p>
+            <div>
+              <h4 class="text-white font-semibold">Sarah Lim</h4>
+              <span class="text-gray-500 text-xs"
+                >Head of Digital, FinTech</span
+              >
+            </div>
+          </div>
+
+          <!-- Card 2 (highlighted) -->
+          <div
+            class="p-8 border border-cyan-400 rounded-lg bg-cyan-400/5 shadow-[0_0_20px_rgba(6,182,212,0.2)]"
+          >
+            <p class="text-gray-300 text-sm leading-relaxed mb-6">
+              “Their architecture design and automation solutions significantly
+              improved our system performance and scalability.”
+            </p>
+            <div>
+              <h4 class="text-white font-semibold">Rajesh Kumar</h4>
+              <span class="text-gray-500 text-xs"
+                >CTO, Enterprise Solutions</span
+              >
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div
+            class="p-8 border border-white/10 rounded-lg bg-white/5 hover:border-cyan-400 transition"
+          >
+            <p class="text-gray-300 text-sm leading-relaxed mb-6">
+              “Highly professional team with deep technical expertise in AI and
+              cloud. Delivery was smooth and exceeded expectations.”
+            </p>
+            <div>
+              <h4 class="text-white font-semibold">Emily Tan</h4>
+              <span class="text-gray-500 text-xs">Operations Director</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-<!-- TESTIMONIALS -->
-<section id="testimonials" class="py-10 bg-[#030712] border-t border-white/10">
-  <div class="w-full px-20">
-
-    <!-- Title -->
-    <div class="text-center mb-16">
-      <h2 class="text-cyan-400 tracking-[0.5em] text-sm md:text-base font-semibold mb-3">TESTIMONIALS</h2>
-      <h3 class="text-3xl md:text-2xl font-bold text-white">
-        What Our Clients Say
-      </h3>
-      <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
-        Trusted by researchers and industry leaders.
-      </p>
-    </div>
-
-    <!-- Cards -->
-    <div class="grid md:grid-cols-3 gap-8">
-
-      <!-- Card 1 -->
-      <div class="p-8 border border-white/10 rounded-lg bg-white/5 hover:border-cyan-400 transition">
-        <p class="text-gray-300 text-sm leading-relaxed mb-6">
-          “Entropix Solutions transformed our data into actionable insights.
-          Their AI capabilities gave us a real competitive advantage.”
-        </p>
-        <div>
-          <h4 class="text-white font-semibold">Sarah Lim</h4>
-          <span class="text-gray-500 text-xs">Head of Digital, FinTech</span>
-        </div>
-      </div>
-
-      <!-- Card 2 (highlighted) -->
-      <div class="p-8 border border-cyan-400 rounded-lg bg-cyan-400/5 shadow-[0_0_20px_rgba(6,182,212,0.2)]">
-        <p class="text-gray-300 text-sm leading-relaxed mb-6">
-          “Their architecture design and automation solutions significantly
-          improved our system performance and scalability.”
-        </p>
-        <div>
-          <h4 class="text-white font-semibold">Rajesh Kumar</h4>
-          <span class="text-gray-500 text-xs">CTO, Enterprise Solutions</span>
-        </div>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="p-8 border border-white/10 rounded-lg bg-white/5 hover:border-cyan-400 transition">
-        <p class="text-gray-300 text-sm leading-relaxed mb-6">
-          “Highly professional team with deep technical expertise in AI and cloud.
-          Delivery was smooth and exceeded expectations.”
-        </p>
-        <div>
-          <h4 class="text-white font-semibold">Emily Tan</h4>
-          <span class="text-gray-500 text-xs">Operations Director</span>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
     <!-- METHODOLOGY -->
     <section id="methodology" class="py-20 border-t border-white/10 reveal">
       <div class="w-full px-20">
         <div class="mb-10 text-left reveal delay-150">
-          <p class="text-cyan-400 tracking-[0.5em] text-sm md:text-base font-semibold mb-3">METHODOLOGY</p>
-          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Math-first. Results-driven.</h2>
+          <p
+            class="text-cyan-400 tracking-[0.5em] text-sm md:text-base font-semibold mb-3"
+          >
+            METHODOLOGY
+          </p>
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+            Math-first. Results-driven.
+          </h2>
           <p class="text-gray-400 max-w-2xl mt-3">
-            We build on rigorous probabilistic foundations — Bayesian inference, gradient optimization, and information theory — designed for production-grade forecasting and decision-ready intelligence.
+            We build on rigorous probabilistic foundations — Bayesian inference,
+            gradient optimization, and information theory — designed for
+            production-grade forecasting and decision-ready intelligence.
           </p>
         </div>
 
         <div class="grid gap-6 md:grid-cols-2">
-          <div class="border border-white/10 rounded-3xl bg-white/5 p-8 reveal transition-all hover:border-cyan-400/30 hover:bg-white/10 delay-150">
-            <div class="text-cyan-400 text-xs tracking-[0.4em] mb-2">01 — INGEST</div>
+          <div
+            class="border border-white/10 rounded-3xl bg-white/5 p-8 reveal transition-all hover:border-cyan-400/30 hover:bg-white/10 delay-150"
+          >
+            <div class="text-cyan-400 text-xs tracking-[0.4em] mb-2">
+              01 — INGEST
+            </div>
             <h3 class="text-xl font-semibold mb-3">Unified Signal Capture</h3>
             <p class="text-gray-400 text-sm leading-relaxed">
-              Structured and unstructured streams are ingested via high-throughput pipelines with schema-on-read flexibility. Every signal is timestamped, normalized, and encoded.
+              Structured and unstructured streams are ingested via
+              high-throughput pipelines with schema-on-read flexibility. Every
+              signal is timestamped, normalized, and encoded.
             </p>
-            <div class="mt-5 text-cyan-300 text-sm font-mono"><marquee behavior="scroll" direction="left" scrollamount="5">X = {x₁, x₂, ..., xₙ} ∈ ℝᵈ</marquee></div>
+            <div class="mt-5 text-cyan-300 text-sm font-mono">
+              <marquee behavior="scroll" direction="left" scrollamount="5">
+                X = {x₁, x₂, ..., xₙ} ∈ ℝᵈ
+              </marquee>
+            </div>
           </div>
 
-          <div class="border border-white/10 rounded-3xl bg-white/5 p-8 reveal transition-all hover:border-cyan-400/30 hover:bg-white/10 delay-300">
-            <div class="text-cyan-400 text-xs tracking-[0.4em] mb-2">02 — LEARN</div>
+          <div
+            class="border border-white/10 rounded-3xl bg-white/5 p-8 reveal transition-all hover:border-cyan-400/30 hover:bg-white/10 delay-300"
+          >
+            <div class="text-cyan-400 text-xs tracking-[0.4em] mb-2">
+              02 — LEARN
+            </div>
             <h3 class="text-xl font-semibold mb-3">Probabilistic Modeling</h3>
             <p class="text-gray-400 text-sm leading-relaxed">
-              Ensemble methods and deep probabilistic networks are trained per domain, optimized via stochastic gradient descent with adaptive learning rate schedules.
+              Ensemble methods and deep probabilistic networks are trained per
+              domain, optimized via stochastic gradient descent with adaptive
+              learning rate schedules.
             </p>
-            <div class="mt-5 text-cyan-300 text-sm font-mono"><marquee behavior="scroll" direction="left" scrollamount="5">θ ← θ − η · ∇θ J(θ; xᵢ; yᵢ)</marquee></div>
+            <div class="mt-5 text-cyan-300 text-sm font-mono">
+              <marquee behavior="scroll" direction="left" scrollamount="5">
+                θ ← θ − η · ∇θ J(θ; xᵢ; yᵢ)
+              </marquee>
+            </div>
           </div>
 
-          <div class="border border-white/10 rounded-3xl bg-white/5 p-8 reveal transition-all hover:border-cyan-400/30 hover:bg-white/10 delay-450">
-            <div class="text-cyan-400 text-xs tracking-[0.4em] mb-2">03 — PREDICT</div>
+          <div
+            class="border border-white/10 rounded-3xl bg-white/5 p-8 reveal transition-all hover:border-cyan-400/30 hover:bg-white/10 delay-450"
+          >
+            <div class="text-cyan-400 text-xs tracking-[0.4em] mb-2">
+              03 — PREDICT
+            </div>
             <h3 class="text-xl font-semibold mb-3">Calibrated Forecasting</h3>
             <p class="text-gray-400 text-sm leading-relaxed">
-              Outputs are accompanied by confidence intervals derived from epistemic uncertainty quantification — giving you not just a prediction, but a probability distribution over outcomes.
+              Outputs are accompanied by confidence intervals derived from
+              epistemic uncertainty quantification — giving you not just a
+              prediction, but a probability distribution over outcomes.
             </p>
-            <div class="mt-5 text-cyan-300 text-sm font-mono"><marquee behavior="scroll" direction="left" scrollamount="5">ŷ ± 1.96 · σ / √n (95% CI)</marquee></div>
+            <div class="mt-5 text-cyan-300 text-sm font-mono">
+              <marquee behavior="scroll" direction="left" scrollamount="5">
+                ŷ ± 1.96 · σ / √n (95% CI)
+              </marquee>
+            </div>
           </div>
 
-          <div class="border border-white/10 rounded-3xl bg-white/5 p-8 reveal transition-all hover:border-cyan-400/30 hover:bg-white/10 delay-600">
-            <div class="text-cyan-400 text-xs tracking-[0.4em] mb-2">04 — ACT</div>
+          <div
+            class="border border-white/10 rounded-3xl bg-white/5 p-8 reveal transition-all hover:border-cyan-400/30 hover:bg-white/10 delay-600"
+          >
+            <div class="text-cyan-400 text-xs tracking-[0.4em] mb-2">
+              04 — ACT
+            </div>
             <h3 class="text-xl font-semibold mb-3">Decision-Ready Outputs</h3>
             <p class="text-gray-400 text-sm leading-relaxed">
-              Predictions surface as structured signals through REST APIs, webhooks, or native integrations — directly triggering workflows, alerts, or BI dashboards.
+              Predictions surface as structured signals through REST APIs,
+              webhooks, or native integrations — directly triggering workflows,
+              alerts, or BI dashboards.
             </p>
-            <div class="mt-5 text-cyan-300 text-sm font-mono"><marquee behavior="scroll" direction="left" scrollamount="5">argmax_a E[R(s, a) | π, θ]</marquee></div>
+            <div class="mt-5 text-cyan-300 text-sm font-mono">
+              <marquee behavior="scroll" direction="left" scrollamount="5">
+                argmax_a E[R(s, a) | π, θ]
+              </marquee>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ABOUT -->
-<section id="about" class="py-20 border-t border-white/10">
-  <div class="w-full px-20">
+    <section id="about" class="py-20 border-t border-white/10">
+      <div class="w-full px-20">
+        <!-- Title -->
+        <div class="mb-16 reveal">
+          <p class="text-cyan-400 tracking-[0.5em] text-sm font-semibold mb-3">
+            ABOUT US
+          </p>
+          <div
+            class="h-[2px] w-40 bg-gradient-to-r from-cyan-400 to-transparent mb-6 animate-pulse"
+          ></div>
 
-    <!-- Title -->
-    <div class="mb-16 reveal">
-      <p class="text-cyan-400 tracking-[0.5em] text-sm font-semibold mb-3">
-        ABOUT US
-      </p>
-      <div class="h-[2px] w-40 bg-gradient-to-r from-cyan-400 to-transparent mb-6 animate-pulse"></div>
+          <h2 class="text-4xl md:text-3xl font-bold mb-6">
+            Turning Data into
+            <span class="text-cyan-400">Predictive Intelligence</span>
+          </h2>
 
-      <h2 class="text-4xl md:text-3xl font-bold mb-6">
-        Turning Data into <span class="text-cyan-400">Predictive Intelligence</span>
-      </h2>
-
-      <!-- <p class="text-gray-400 max-w-3xl leading-relaxed">
+          <!-- <p class="text-gray-400 max-w-3xl leading-relaxed">
         At <span class="text-white font-semibold">Entropix Solutions</span>, we engineer intelligent systems that convert uncertainty into measurable outcomes. 
         Powered by artificial intelligence, probabilistic modeling, and mathematical optimization, we enable organizations to move from reactive decision-making to predictive intelligence.
       </p> -->
-      <p class="text-gray-400 max-w-3xl mt-3 leading-relaxed">
-  Entropix Solutions is an intelligence engine — where data flows, models learn, 
-  and decisions emerge in real-time. We engineer adaptive AI systems that continuously 
-  evolve using probabilistic learning, gradient optimization, and large-scale data processing.
-</p>
-    </div>
-
-    
-    <!-- AI METRICS PANEL -->
-<!-- LIVE AI METRICS -->
-<div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12 mt-24 reveal delay-400">
-
-  <div class="metric-card">
-    <div class="flex justify-between items-center mb-3">
-      <span class="text-xs tracking-widest text-cyan-400">PREDICTION</span>
-      <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-    </div>
-    <h3 id="accuracy">98%</h3>
-    <p>Prediction Accuracy</p>
-  </div>
-
-  <div class="metric-card">
-    <div class="flex justify-between items-center mb-3">
-      <span class="text-xs tracking-widest text-cyan-400">LATENCY</span>
-      <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-    </div>
-    <h3 id="latency">120ms</h3>
-    <p>Avg Response Time</p>
-  </div>
-
-  <div class="metric-card">
-    <div class="flex justify-between items-center mb-3">
-      <span class="text-xs tracking-widest text-cyan-400">MODELS</span>
-      <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-    </div>
-    <h3 id="models">24</h3>
-    <p>Active Models</p>
-  </div>
-
-  <div class="metric-card">
-    <div class="flex justify-between items-center mb-3">
-      <span class="text-xs tracking-widest text-cyan-400">DATA FLOW</span>
-      <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-    </div>
-    <h3 id="data">320TB</h3>
-    <p>Data Processed</p>
-  </div>
-
-</div>
-
-<!-- LIVE AI DASHBOARD -->
-<div class="mt-14 grid md:grid-cols-2 gap-8 reveal">
-
-  <!-- Activity Feed -->
-  <div class="border border-white/10 rounded-2xl bg-white/5 p-6 backdrop-blur-md">
-    <div class="flex justify-between items-center mb-4">
-      <h3 class="text-cyan-400 text-sm tracking-[0.3em]">LIVE INFERENCE</h3>
-      <span class="text-xs text-green-400 animate-pulse">ONLINE</span>
-    </div>
-
-    <div id="ai-feed" class="space-y-3 text-sm text-gray-300">
-      <div>Initializing models...</div>
-    </div>
-  </div>
-
-  <!-- Signal Bars -->
-  <div class="border border-white/10 rounded-2xl bg-white/5 p-6 backdrop-blur-md">
-    <div class="mb-4">
-      <h3 class="text-cyan-400 text-sm tracking-[0.3em]">NEURAL ACTIVITY</h3>
-    </div>
-
-    <div class="flex items-end gap-2 h-36" id="signal-bars">
-      <div class="w-full bg-cyan-400/70 rounded-t" style="height:30%"></div>
-      <div class="w-full bg-cyan-400/70 rounded-t" style="height:55%"></div>
-      <div class="w-full bg-cyan-400/70 rounded-t" style="height:80%"></div>
-      <div class="w-full bg-cyan-400/70 rounded-t" style="height:45%"></div>
-      <div class="w-full bg-cyan-400/70 rounded-t" style="height:60%"></div>
-      <div class="w-full bg-cyan-400/70 rounded-t" style="height:90%"></div>
-      <div class="w-full bg-cyan-400/70 rounded-t" style="height:40%"></div>
-      <div class="w-full bg-cyan-400/70 rounded-t" style="height:75%"></div>
-    </div>
-  </div>
-
-</div>
-
-    <!-- Cards -->
-    <div class="grid md:grid-cols-3 gap-8 gap-y-2 mt-16">
-
-      <div class="about-card p-8 border border-white/10 rounded-xl bg-white/5 reveal delay-1">
-        <h3 class="text-cyan-400 text-lg mb-3">π — Precision Engine</h3>
-        <p class="text-gray-400 text-sm leading-relaxed">
-          Inspired by π, we design systems with infinite scalability and computational precision — ensuring every model and output is mathematically grounded.
-        </p>
-      </div>
-
-      <div class="about-card p-8 border border-white/10 rounded-xl bg-white/5 reveal delay-2">
-        <h3 class="text-cyan-400 text-lg mb-3">|x| — Stability Layer</h3>
-        <p class="text-gray-400 text-sm leading-relaxed">
-          Like modulus, our platforms maintain stability in volatile environments — delivering reliable insights even in uncertain data conditions.
-        </p>
-      </div>
-
-      <div class="about-card p-8 border border-white/10 rounded-xl bg-white/5 reveal delay-3">
-        <h3 class="text-cyan-400 text-lg mb-3">∇ — Learning Systems</h3>
-        <p class="text-gray-400 text-sm leading-relaxed">
-          Driven by gradient-based learning, our AI continuously evolves — optimizing performance, improving predictions, and adapting in real time.
-        </p>
-      </div>
-
-    </div>
-
-    <!-- Deep AI Description -->
-    <div class="grid md:grid-cols-2 gap-10 gap-y-2 mt-16">
-
-      <div class="reveal delay-1">
-        <h3 class="text-cyan-400 text-lg mb-4">Our Vision</h3>
-        <p class="text-gray-400 leading-relaxed">
-          To pioneer a future where AI-driven intelligence becomes the foundation of every strategic decision — enabling businesses to predict, adapt, and lead with confidence.
-        </p>
-      </div>
-
-      <div class="reveal delay-2">
-        <h3 class="text-cyan-400 text-lg mb-4">Our Mission</h3>
-        <p class="text-gray-400 leading-relaxed">
-          To build intelligent, scalable systems that transform raw data into foresight — combining machine learning, automation, and cloud-native architectures.
-        </p>
-      </div>
-
-    </div>
-
-    <!-- Core Values -->
-    <div class="mt-16 reveal delay-3">
-      <h3 class="text-cyan-400 text-lg mb-6">Core Principles</h3>
-
-      <div class="grid md:grid-cols-3 gap-6 text-sm">
-
-        <div class="p-6 border border-white/10 rounded-xl bg-white/5">
-          <strong class="text-white">Precision</strong>
-          <p class="text-gray-400 mt-2">Mathematical accuracy in every solution.</p>
+          <p class="text-gray-400 max-w-3xl mt-3 leading-relaxed">
+            Entropix Solutions is an intelligence engine — where data flows,
+            models learn, and decisions emerge in real-time. We engineer
+            adaptive AI systems that continuously evolve using probabilistic
+            learning, gradient optimization, and large-scale data processing.
+          </p>
         </div>
 
-        <div class="p-6 border border-white/10 rounded-xl bg-white/5">
-          <strong class="text-white">Adaptability</strong>
-          <p class="text-gray-400 mt-2">Systems that evolve with your data.</p>
+        <!-- AI METRICS PANEL -->
+        <!-- LIVE AI METRICS -->
+        <div
+          class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12 mt-24 reveal delay-400"
+        >
+          <div class="metric-card">
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-xs tracking-widest text-cyan-400"
+                >PREDICTION</span
+              >
+              <span
+                class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"
+              ></span>
+            </div>
+            <h3 id="accuracy">98%</h3>
+            <p>Prediction Accuracy</p>
+          </div>
+
+          <div class="metric-card">
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-xs tracking-widest text-cyan-400">LATENCY</span>
+              <span
+                class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"
+              ></span>
+            </div>
+            <h3 id="latency">120ms</h3>
+            <p>Avg Response Time</p>
+          </div>
+
+          <div class="metric-card">
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-xs tracking-widest text-cyan-400">MODELS</span>
+              <span
+                class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"
+              ></span>
+            </div>
+            <h3 id="models">24</h3>
+            <p>Active Models</p>
+          </div>
+
+          <div class="metric-card">
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-xs tracking-widest text-cyan-400"
+                >DATA FLOW</span
+              >
+              <span
+                class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"
+              ></span>
+            </div>
+            <h3 id="data">320TB</h3>
+            <p>Data Processed</p>
+          </div>
         </div>
 
-        <div class="p-6 border border-white/10 rounded-xl bg-white/5">
-          <strong class="text-white">Intelligence</strong>
-          <p class="text-gray-400 mt-2">Insights that drive real decisions.</p>
+        <!-- LIVE AI DASHBOARD -->
+        <div class="mt-14 grid md:grid-cols-2 gap-8 reveal">
+          <!-- Activity Feed -->
+          <div
+            class="border border-white/10 rounded-2xl bg-white/5 p-6 backdrop-blur-md"
+          >
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-cyan-400 text-sm tracking-[0.3em]">
+                LIVE INFERENCE
+              </h3>
+              <span class="text-xs text-green-400 animate-pulse">ONLINE</span>
+            </div>
+
+            <div id="ai-feed" class="space-y-3 text-sm text-gray-300">
+              <div>Initializing models...</div>
+            </div>
+          </div>
+
+          <!-- Signal Bars -->
+          <div
+            class="border border-white/10 rounded-2xl bg-white/5 p-6 backdrop-blur-md"
+          >
+            <div class="mb-4">
+              <h3 class="text-cyan-400 text-sm tracking-[0.3em]">
+                NEURAL ACTIVITY
+              </h3>
+            </div>
+
+            <div class="flex items-end gap-2 h-36" id="signal-bars">
+              <div
+                class="w-full bg-cyan-400/70 rounded-t"
+                style="height: 30%"
+              ></div>
+              <div
+                class="w-full bg-cyan-400/70 rounded-t"
+                style="height: 55%"
+              ></div>
+              <div
+                class="w-full bg-cyan-400/70 rounded-t"
+                style="height: 80%"
+              ></div>
+              <div
+                class="w-full bg-cyan-400/70 rounded-t"
+                style="height: 45%"
+              ></div>
+              <div
+                class="w-full bg-cyan-400/70 rounded-t"
+                style="height: 60%"
+              ></div>
+              <div
+                class="w-full bg-cyan-400/70 rounded-t"
+                style="height: 90%"
+              ></div>
+              <div
+                class="w-full bg-cyan-400/70 rounded-t"
+                style="height: 40%"
+              ></div>
+              <div
+                class="w-full bg-cyan-400/70 rounded-t"
+                style="height: 75%"
+              ></div>
+            </div>
+          </div>
         </div>
 
+        <!-- Cards -->
+        <div class="grid md:grid-cols-3 gap-8 gap-y-2 mt-16">
+          <div
+            class="about-card p-8 border border-white/10 rounded-xl bg-white/5 reveal delay-1"
+          >
+            <h3 class="text-cyan-400 text-lg mb-3">π — Precision Engine</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Inspired by π, we design systems with infinite scalability and
+              computational precision — ensuring every model and output is
+              mathematically grounded.
+            </p>
+          </div>
+
+          <div
+            class="about-card p-8 border border-white/10 rounded-xl bg-white/5 reveal delay-2"
+          >
+            <h3 class="text-cyan-400 text-lg mb-3">|x| — Stability Layer</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Like modulus, our platforms maintain stability in volatile
+              environments — delivering reliable insights even in uncertain data
+              conditions.
+            </p>
+          </div>
+
+          <div
+            class="about-card p-8 border border-white/10 rounded-xl bg-white/5 reveal delay-3"
+          >
+            <h3 class="text-cyan-400 text-lg mb-3">∇ — Learning Systems</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Driven by gradient-based learning, our AI continuously evolves —
+              optimizing performance, improving predictions, and adapting in
+              real time.
+            </p>
+          </div>
+        </div>
+
+        <!-- Deep AI Description -->
+        <div class="grid md:grid-cols-2 gap-10 gap-y-2 mt-16">
+          <div class="reveal delay-1">
+            <h3 class="text-cyan-400 text-lg mb-4">Our Vision</h3>
+            <p class="text-gray-400 leading-relaxed">
+              To pioneer a future where AI-driven intelligence becomes the
+              foundation of every strategic decision — enabling businesses to
+              predict, adapt, and lead with confidence.
+            </p>
+          </div>
+
+          <div class="reveal delay-2">
+            <h3 class="text-cyan-400 text-lg mb-4">Our Mission</h3>
+            <p class="text-gray-400 leading-relaxed">
+              To build intelligent, scalable systems that transform raw data
+              into foresight — combining machine learning, automation, and
+              cloud-native architectures.
+            </p>
+          </div>
+        </div>
+
+        <!-- Core Values -->
+        <div class="mt-16 reveal delay-3">
+          <h3 class="text-cyan-400 text-lg mb-6">Core Principles</h3>
+
+          <div class="grid md:grid-cols-3 gap-6 text-sm">
+            <div class="p-6 border border-white/10 rounded-xl bg-white/5">
+              <strong class="text-white">Precision</strong>
+              <p class="text-gray-400 mt-2">
+                Mathematical accuracy in every solution.
+              </p>
+            </div>
+
+            <div class="p-6 border border-white/10 rounded-xl bg-white/5">
+              <strong class="text-white">Adaptability</strong>
+              <p class="text-gray-400 mt-2">
+                Systems that evolve with your data.
+              </p>
+            </div>
+
+            <div class="p-6 border border-white/10 rounded-xl bg-white/5">
+              <strong class="text-white">Intelligence</strong>
+              <p class="text-gray-400 mt-2">
+                Insights that drive real decisions.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
 
-  </div>
-</section>
+    <section
+      id="contact"
+      class="py-20 border-t border-white/10 relative overflow-hidden"
+    >
+      <!-- Glow background -->
+      <div
+        class="absolute left-1/2 -translate-x-1/2 top-0 w-[700px] h-[300px] bg-cyan-500/10 blur-[120px]"
+      ></div>
 
-    <!-- CONTACT -->
-    <section id="contact" class="py-10 border-t border-white/10">
-      <div class="w-full px-20">
-        <div class="mb-10 text-left">
-          <p class="text-cyan-400 tracking-[0.5em] text-sm md:text-base font-semibold mb-3">CONTACT US</p>
-          <h2>The <em>future</em> is predictable.</h2>
-  <p>Join 400+ teams on the waitlist. Early access opens Q3 2026.</p>
+      <div class="w-full px-20 relative z-10">
+        <!-- HEADER -->
+        <div class="mb-16 max-w-2xl reveal">
+          <p class="text-cyan-400 tracking-[0.5em] text-sm font-semibold mb-4">
+            CONNECT WITH US
+          </p>
+
+          <h2 class="text-4xl md:text-3xl font-bold mb-6 leading-tight">
+            Ready to Experience
+            <span class="text-cyan-400">Predictive Intelligence?</span>
+          </h2>
+
+          <p class="text-gray-400 leading-relaxed">
+            Join forward-thinking teams leveraging AI-driven decision systems.
+            Get early access, tailored solutions, and direct consultation with
+            our engineers.
+          </p>
         </div>
 
+        <!-- CONTACT GRID -->
         <div class="grid md:grid-cols-3 gap-6">
-          <div class="border border-cyan-400 p-8 rounded-2xl bg-cyan-400/5">
+          <!-- Email -->
+          <div
+            class="group border border-white/10 p-8 rounded-2xl bg-white/5 backdrop-blur-md hover:border-cyan-400/40 transition duration-300"
+          >
             <h3 class="text-white text-lg mb-3">Email</h3>
             <p class="text-gray-400 text-sm">care@entropix.pro</p>
+            <div
+              class="mt-4 text-xs text-cyan-400 opacity-0 group-hover:opacity-100 transition"
+            >
+              Response within 24 hours
+            </div>
           </div>
-          <div class="border border-cyan-400 p-8 rounded-2xl bg-cyan-400/5">
-            <h3 class="text-white text-lg mb-3">Phone</h3>
-            <p class="text-gray-400 text-sm">+60123456789</p>
+
+          <!-- Phone -->
+          <div
+            class="group border border-white/10 p-8 rounded-2xl bg-white/5 backdrop-blur-md hover:border-cyan-400/40 transition duration-300"
+          >
+            <h3 class="text-white text-lg mb-3">Direct Line</h3>
+            <p class="text-gray-400 text-sm">+60 12-345 6789</p>
+            <div
+              class="mt-4 text-xs text-cyan-400 opacity-0 group-hover:opacity-100 transition"
+            >
+              Mon–Fri · 9AM–6PM
+            </div>
           </div>
-          <div class="border border-cyan-400 p-8 rounded-2xl bg-cyan-400/5">
-            <h3 class="text-white text-lg mb-3">Location</h3>
-            <p class="text-gray-400 text-sm">South East Asia</p>
+
+          <!-- Location -->
+          <div
+            class="group border border-white/10 p-8 rounded-2xl bg-white/5 backdrop-blur-md hover:border-cyan-400/40 transition duration-300"
+          >
+            <h3 class="text-white text-lg mb-3">Region</h3>
+            <p class="text-gray-400 text-sm">Southeast Asia · Global Remote</p>
+            <div
+              class="mt-4 text-xs text-cyan-400 opacity-0 group-hover:opacity-100 transition"
+            >
+              Serving enterprise clients worldwide
+            </div>
           </div>
         </div>
 
-        <div class="mt-10 border border-white/10 rounded-3xl p-8 bg-white/5">
-          <h3 class="text-white text-lg mb-4">Ready to talk?</h3>
-          <p class="text-gray-400 leading-relaxed mb-6">
-            Send us a message with your project goals and our team will respond within 24 hours.
+        <!-- CTA PANEL -->
+        <div
+          class="mt-14 border border-cyan-400/20 rounded-3xl p-10 bg-gradient-to-r from-cyan-400/5 to-transparent backdrop-blur-md"
+        >
+          <h3 class="text-white text-xl mb-4 font-semibold">
+            Get Early Access to Entropix AI
+          </h3>
+
+          <p class="text-gray-400 mb-6 max-w-xl">
+            Be among the first to deploy predictive AI systems in your business.
+            Limited onboarding slots available for Q3 2026.
           </p>
-          <a href="mailto:care@entropix.prov" class="inline-block bg-cyan-400 text-black px-6 py-3 text-xs font-bold tracking-widest hover:bg-cyan-300 transition">
-            Email Us
-          </a>
+
+          <div class="flex flex-wrap gap-4">
+            <a
+              href="mailto:care@entropix.pro"
+              class="bg-gradient-to-r from-cyan-400 to-blue-500 text-black px-6 py-3 text-xs font-bold tracking-widest rounded-md hover:scale-105 transition shadow-[0_0_15px_rgba(34,211,238,0.5)]"
+            >
+              REQUEST ACCESS →
+            </a>
+
+            <button
+              onclick="
+                document
+                  .getElementById('services')
+                  .scrollIntoView({ behavior: 'smooth' })
+              "
+              class="border border-white/20 px-6 py-3 text-xs tracking-widest hover:border-cyan-400 hover:text-cyan-400 transition"
+            >
+              EXPLORE SERVICES
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -573,19 +838,22 @@ window.addEventListener("resize", () => {
     </footer>
 
     <script>
-      const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      }, { threshold: 0.15 });
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.15 },
+      );
 
-      document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => revealObserver.observe(el));
     </script>
 
-  
-<script src="js/script.js"></script>
-</body>
-</body>
+    <script src="js/script.js"></script>
+  </body>
 </html>

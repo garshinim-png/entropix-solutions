@@ -204,24 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================
-     LIVE METRICS (HERO)
-  ========================== */
-  function updateHeroMetrics() {
-    const acc = document.getElementById("hero-accuracy");
-    const lat = document.getElementById("hero-latency");
-
-    if (acc && lat) {
-      acc.innerText = (97 + Math.floor(Math.random() * 3)) + "%";
-      lat.innerText = (90 + Math.floor(Math.random() * 40)) + "ms";
-    }
-  }
-
-  setInterval(updateHeroMetrics, 2000);
-  updateHeroMetrics();
-
-
-  /* =========================
-     ABOUT METRICS DASHBOARD
+     METRICS
   ========================== */
   function updateMetrics() {
     const acc = document.getElementById("accuracy");
@@ -303,5 +286,64 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: 0.15 });
 
   document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+
+
+  /* =========================
+     VIDEO + AUDIO (FIXED)
+  ========================== */
+  const mainVideo = document.getElementById("mainVideo");
+  const playBtn = document.getElementById("playBtn");
+  const bgMusic = document.getElementById("bgMusic");
+
+  let audioInitialized = false;
+
+  if (playBtn && mainVideo) {
+    playBtn.addEventListener("click", async () => {
+      try {
+        mainVideo.muted = false;
+        mainVideo.controls = true;
+        await mainVideo.play();
+
+        // background music
+        if (bgMusic) {
+          bgMusic.volume = 0.4;
+          bgMusic.play().catch(() => {});
+        }
+
+        // sound reactive effect (only once)
+        if (!audioInitialized) {
+          const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          const analyser = audioCtx.createAnalyser();
+          const source = audioCtx.createMediaElementSource(mainVideo);
+
+          source.connect(analyser);
+          analyser.connect(audioCtx.destination);
+
+          analyser.fftSize = 64;
+          const dataArray = new Uint8Array(analyser.frequencyBinCount);
+
+          function animateSound() {
+            analyser.getByteFrequencyData(dataArray);
+            let avg = dataArray.reduce((a, b) => a + b) / dataArray.length;
+
+            if (avg > 60) {
+              mainVideo.classList.add("sound-glow");
+            } else {
+              mainVideo.classList.remove("sound-glow");
+            }
+
+            requestAnimationFrame(animateSound);
+          }
+
+          await audioCtx.resume();
+          animateSound();
+          audioInitialized = true;
+        }
+
+      } catch (err) {
+        console.log("Playback blocked:", err);
+      }
+    });
+  }
 
 });
