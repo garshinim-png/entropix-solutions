@@ -288,62 +288,166 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
 
 
-  /* =========================
-     VIDEO + AUDIO (FIXED)
-  ========================== */
-  const mainVideo = document.getElementById("mainVideo");
-  const playBtn = document.getElementById("playBtn");
-  const bgMusic = document.getElementById("bgMusic");
 
-  let audioInitialized = false;
 
-  if (playBtn && mainVideo) {
-    playBtn.addEventListener("click", async () => {
-      try {
-        mainVideo.muted = false;
-        mainVideo.controls = true;
-        await mainVideo.play();
 
-        // background music
-        if (bgMusic) {
-          bgMusic.volume = 0.4;
-          bgMusic.play().catch(() => {});
-        }
 
-        // sound reactive effect (only once)
-        if (!audioInitialized) {
-          const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-          const analyser = audioCtx.createAnalyser();
-          const source = audioCtx.createMediaElementSource(mainVideo);
 
-          source.connect(analyser);
-          analyser.connect(audioCtx.destination);
+/* =========================
+   VIDEO + AUDIO (CLEAN FIX)
+========================= */
 
-          analyser.fftSize = 64;
-          const dataArray = new Uint8Array(analyser.frequencyBinCount);
+const mainVideo = document.getElementById("mainVideo");
+const secondVideo = document.getElementById("secondaryVideo");
 
-          function animateSound() {
-            analyser.getByteFrequencyData(dataArray);
-            let avg = dataArray.reduce((a, b) => a + b) / dataArray.length;
+const playBtn1 = document.getElementById("playBtn");
+const playBtn2 = document.getElementById("playBtn2");
 
-            if (avg > 60) {
-              mainVideo.classList.add("sound-glow");
-            } else {
-              mainVideo.classList.remove("sound-glow");
-            }
+const music1 = document.getElementById("music1");
+const music2 = document.getElementById("music2");
 
-            requestAnimationFrame(animateSound);
-          }
+const muteToggle = document.getElementById("muteToggle");
 
-          await audioCtx.resume();
-          animateSound();
-          audioInitialized = true;
-        }
+const videoCards = document.querySelectorAll(".video-card");
 
-      } catch (err) {
-        console.log("Playback blocked:", err);
-      }
-    });
-  }
+let isMuted = false;
+
+/* 🎬 CINEMATIC SWITCH */
+function activateVideo(activeVideo, inactiveVideo) {
+  if (!activeVideo) return;
+
+  const activeCard = activeVideo.closest(".video-card");
+  const inactiveCard = inactiveVideo?.closest(".video-card");
+
+  // Pause other video
+  if (inactiveVideo) inactiveVideo.pause();
+
+  // Reset styles
+  videoCards.forEach(card => {
+    card.classList.remove("video-active", "video-inactive");
+  });
+
+  // Apply cinematic classes
+  if (activeCard) activeCard.classList.add("video-active");
+  if (inactiveCard) inactiveCard.classList.add("video-inactive");
+
+  // Play selected video
+  activeVideo.muted = false;
+  activeVideo.controls = true;
+
+  activeVideo.play().catch(() => {});
+}
+
+/* 🎵 MUSIC CONTROL */
+function fadeIn(audio) {
+  if (!audio) return;
+
+  audio.volume = 0;
+  audio.play().catch(() => {});
+
+  let vol = 0;
+  const fade = setInterval(() => {
+    vol += 0.05;
+    if (vol >= 0.4) {
+      audio.volume = 0.4;
+      clearInterval(fade);
+    } else {
+      audio.volume = vol;
+    }
+  }, 150);
+}
+
+function stopAllMusic() {
+  [music1, music2].forEach(m => {
+    if (m) {
+      m.pause();
+      m.currentTime = 0;
+    }
+  });
+}
+
+/* ▶ VIDEO 1 */
+if (playBtn1 && mainVideo) {
+  playBtn1.addEventListener("click", () => {
+    activateVideo(mainVideo, secondVideo);
+
+    stopAllMusic();
+    if (!isMuted) fadeIn(music1);
+  });
+}
+
+/* ▶ VIDEO 2 */
+if (playBtn2 && secondVideo) {
+  playBtn2.addEventListener("click", () => {
+    activateVideo(secondVideo, mainVideo);
+
+    stopAllMusic();
+    if (!isMuted) fadeIn(music2);
+  });
+}
+
+/* 🔇 MUTE TOGGLE */
+if (muteToggle) {
+  muteToggle.addEventListener("click", () => {
+    isMuted = !isMuted;
+
+    if (isMuted) {
+      stopAllMusic();
+      muteToggle.innerText = "🔇 SOUND OFF";
+    } else {
+      muteToggle.innerText = "🔊 SOUND ON";
+
+      // resume correct music
+      if (mainVideo && !mainVideo.paused) fadeIn(music1);
+      if (secondVideo && !secondVideo.paused) fadeIn(music2);
+    }
+  });
+}
+
+
+/* =========================
+   PAUSE BUTTONS
+========================= */
+const pauseBtn1 = document.getElementById("pauseBtn1");
+const pauseBtn2 = document.getElementById("pauseBtn2");
+
+if (pauseBtn1 && mainVideo) {
+  pauseBtn1.addEventListener("click", () => {
+    mainVideo.pause();
+  });
+}
+
+if (pauseBtn2 && secondVideo) {
+  pauseBtn2.addEventListener("click", () => {
+    secondVideo.pause();
+  });
+}
+function formatTime(sec) {
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60);
+  return `${m}:${s < 10 ? "0" : ""}${s}`;
+}
+
+const time1 = document.getElementById("time1");
+const time2 = document.getElementById("time2");
+
+if (mainVideo && time1) {
+  mainVideo.addEventListener("timeupdate", () => {
+    time1.innerText =
+      formatTime(mainVideo.currentTime) + " / " +
+      formatTime(mainVideo.duration || 0);
+  });
+}
+
+if (secondVideo && time2) {
+  secondVideo.addEventListener("timeupdate", () => {
+    time2.innerText =
+      formatTime(secondVideo.currentTime) + " / " +
+      formatTime(secondVideo.duration || 0);
+  });
+}
+
+
+
 
 });

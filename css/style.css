@@ -359,7 +359,29 @@ canvas {
   font-size: 14px;
   letter-spacing: 2px;
 }
+/* 🎬 Cinematic Video Effects */
 
+.video-card video {
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+/* Active video (focused) */
+.video-active video {
+  transform: scale(1.08);
+  opacity: 1;
+  z-index: 2;
+}
+
+/* Inactive video (background feel) */
+.video-inactive video {
+  transform: scale(0.95);
+  opacity: 0.5;
+}
+
+/* Optional glow for premium feel */
+.video-active {
+  box-shadow: 0 0 60px rgba(34, 211, 238, 0.25);
+}
 /* Sound reactive glow */
 .sound-glow {
   box-shadow: 0 0 20px rgba(34,211,238,0.3);

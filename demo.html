@@ -4,14 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Entropix Demo Video</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
+
     <link
       href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
+
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body class="text-white min-h-screen">
+
+  <body class="text-white min-h-screen bg-black">
     <!-- HEADER -->
     <header
       class="fixed w-full z-50 bg-[#030712]/80 backdrop-blur-md border-b border-white/10"
@@ -19,65 +23,69 @@
       <div
         class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
       >
-        <!-- LOGO -->
         <div class="flex items-center gap-2">
           <img src="images/logo2.png" class="h-10" />
           <img src="images/ChatGPT Image 1.png" class="h-10" />
         </div>
 
-        <!-- NAV -->
         <nav
-         class="hidden md:flex gap-12 text-xs tracking-widest text-gray-400 justify-center md:justify-start"
+          class="hidden md:flex gap-12 text-xs tracking-widest text-gray-400"
         >
           <a href="#" class="text-cyan-400 border-b-2 border-cyan-400 pb-1"
             >HOME</a
           >
           <a href="index.html#services" class="hover:text-white">SERVICES</a>
           <a href="index.html#about" class="hover:text-white">ABOUT</a>
-          <a href="index.html#methodology" class="hover:text-white">METHODOLOGY</a>
+          <a href="index.html#methodology" class="hover:text-white"
+            >METHODOLOGY</a
+          >
           <a href="index.html#contact" class="hover:text-white">JOIN US</a>
         </nav>
-
-        <!-- CTA -->
       </div>
     </header>
 
+    <!-- CONTENT -->
     <div class="max-w-6xl mx-auto px-6 pt-32 pb-20">
-      <div>
-        <p class="text-cyan-400 tracking-[0.3em] text-sm mb-6">OUR PRODUCTS</p>
+      <p class="text-cyan-400 tracking-[0.3em] text-sm mb-6">OUR PRODUCTS</p>
 
-        <!-- BIG TEXT -->
-        <h1 class="entropix-text text-5xl md:text-3xl mb-4">
-          ENTROPIX SOLUTIONS
-        </h1>
-        <h2
-          class="entropix-text text-2xl md:text-sm mb-8 bg-gradient-to-r from-purple-500 to-cyan-400 bg-clip-text text-transparent tracking-[0.4em]"
-        ></h2>
-      </div>
-      <!-- AI DEMO GRID -->
-      <div class="mt-12 space-y-16">
-        <!-- FEATURED VIDEO -->
+      <h1 class="entropix-text text-5xl md:text-3xl mb-8">
+        ENTROPIX SOLUTIONS
+      </h1>
+
+      <!-- VIDEOS -->
+      <div class="space-y-16">
+        <!-- VIDEO 1 -->
         <div
-          class="group relative rounded-3xl overflow-hidden border border-cyan-400/20 shadow-2xl shadow-cyan-500/10"
+          class="video-card group relative rounded-3xl overflow-hidden border border-cyan-400/20 shadow-2xl shadow-cyan-500/10"
         >
           <video
             id="mainVideo"
-            class="w-full h-[500px] object-cover transition duration-700 group-hover:scale-105"
+            class="w-full h-[500px] object-cover transition duration-700"
             muted
             loop
             playsinline
+            controls
           >
             <source src="images/EntropixAI.mp4" type="video/mp4" />
           </video>
 
-          <!-- Overlay -->
+          <!-- Overlay (FIXED: pointer-events-none) -->
           <div
-            class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"
+            class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none"
           ></div>
 
           <!-- Content -->
-          <div class="absolute bottom-10 left-10">
+          <div class="absolute bottom-10 left-10 z-10">
+            <button
+              id="pauseBtn1"
+              class="ml-2 px-4 py-2 text-xs tracking-widest"
+            >
+              ⏸ PAUSE
+            </button>
+
+            <span id="time1" class="ml-4 text-xs text-gray-300"></span>
             <h2 class="text-3xl font-bold mb-2">AI Intelligence Engine</h2>
+
             <p class="text-gray-300 max-w-lg mb-4">
               Real-time prediction, adaptive learning, and intelligent
               automation.
@@ -91,42 +99,97 @@
             </button>
           </div>
 
-          <!-- Live indicator -->
           <div
-            class="absolute top-6 right-6 text-xs text-red-400 flex items-center gap-2"
+            class="absolute top-6 right-6 text-xs text-red-400 flex items-center gap-2 z-10"
           >
             <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
             LIVE AI
           </div>
         </div>
 
-        <!-- SECONDARY VIDEOS -->
-        <div class="grid md:grid-cols-2 gap-10">
-          <div class="video-card group">
-            <video muted loop class="preview-video">
-              <source src="images/EntropixAI2.mp4" type="video/mp4" />
-            </video>
-            <div class="video-overlay">Predictive Models</div>
+        <!-- VIDEO 2 -->
+        <div
+          class="video-card group relative rounded-3xl overflow-hidden border border-cyan-400/20 shadow-2xl shadow-cyan-500/10"
+        >
+          <video
+            id="secondaryVideo"
+            class="w-full h-[500px] object-cover transition duration-700"
+            muted
+            loop
+            playsinline
+            controls
+          >
+            playsinline >
+            <source src="images/Edu_video.mp4" type="video/mp4" />
+          </video>
+
+          <!-- Overlay -->
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none"
+          ></div>
+
+          <!-- Content -->
+          <div class="absolute bottom-10 left-10 z-10">
+            <button
+              id="pauseBtn2"
+              class="ml-2 px-4 py-2 text-xs tracking-widest"
+            >
+              ⏸ PAUSE
+            </button>
+
+            <span id="time2" class="ml-4 text-xs text-gray-300"></span>
+            <h2 class="text-3xl font-bold mb-2">AI-Powered Online Tutoring</h2>
+
+            <p class="text-gray-300 max-w-lg mb-4">
+              Personalized AI learning with real-time feedback, adaptive
+              lessons, and continuous progress tracking for every student.
+            </p>
+
+            <button
+              id="playBtn2"
+              class="bg-green-400 text-black px-6 py-2 text-xs font-bold tracking-widest hover:bg-green-300 transition"
+            >
+              ▶ PLAY FULL DEMO
+            </button>
           </div>
 
-          <div class="video-card group">
-            <video muted loop class="preview-video">
-              <source src="images/EntropixAI3.mp4" type="video/mp4" />
-            </video>
-            <div class="video-overlay">Automation Engine</div>
+          <div
+            class="absolute top-6 right-6 text-xs text-green-400 flex items-center gap-2 z-10"
+          >
+            <span
+              class="w-2 h-2 bg-green-400 rounded-full animate-pulse"
+            ></span>
+            LIVE LEARNING
           </div>
         </div>
       </div>
 
+      <!-- BACK BUTTON -->
       <div class="mt-10">
-          <a
-            href="index.html"
-            class="inline-block border border-cyan-400 px-6 py-3 text-xs tracking-widest btn-hover transition duration-300 ease-out hover:scale-105"
-          >
-            RETURN TO HOMEPAGE →
-          </a>
+        <a
+          href="index.html"
+          class="inline-block border border-cyan-400 px-6 py-3 text-xs tracking-widest hover:scale-105 transition"
+        >
+          RETURN TO HOMEPAGE →
+        </a>
       </div>
     </div>
+    <!-- AUDIO TRACKS -->
+    <audio id="music1" loop>
+      <source src="images/video1.mp3" type="audio/mpeg" />
+    </audio>
+
+    <audio id="music2" loop>
+      <source src="images/video2.mp3" type="audio/mpeg" />
+    </audio>
+
+    <!-- MUTE BUTTON -->
+    <button
+      id="muteToggle"
+      class="fixed bottom-6 right-6 z-50 bg-black/70 border border-cyan-400 px-4 py-2 text-xs tracking-widest backdrop-blur hover:bg-black"
+    >
+      🔊 SOUND ON
+    </button>
+    <script src="js/script.js"></script>
   </body>
-  <script src="js/script.js"></script>
 </html>
