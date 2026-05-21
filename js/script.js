@@ -294,158 +294,188 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* =========================
-   VIDEO + AUDIO (CLEAN FIX)
+   VIDEO + AUDIO
 ========================= */
 
-const mainVideo = document.getElementById("mainVideo");
-const secondVideo = document.getElementById("secondaryVideo");
+const mainVideo    = document.getElementById("mainVideo");
+const secondVideo  = document.getElementById("secondaryVideo");
+const music1       = document.getElementById("music1");
+const music2       = document.getElementById("music2");
 
-const playBtn1 = document.getElementById("playBtn");
-const playBtn2 = document.getElementById("playBtn2");
+const PLAY_SVG  = `<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>`;
+const PAUSE_SVG = `<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>`;
+const VOL_ON    = `<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>`;
+const VOL_OFF   = `<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>`;
 
-const music1 = document.getElementById("music1");
-const music2 = document.getElementById("music2");
-
-const muteToggle = document.getElementById("muteToggle");
-
-const videoCards = document.querySelectorAll(".video-card");
-
-let isMuted = false;
-
-/* 🎬 CINEMATIC SWITCH */
-function activateVideo(activeVideo, inactiveVideo) {
-  if (!activeVideo) return;
-
-  const activeCard = activeVideo.closest(".video-card");
-  const inactiveCard = inactiveVideo?.closest(".video-card");
-
-  // Pause other video
-  if (inactiveVideo) inactiveVideo.pause();
-
-  // Reset styles
-  videoCards.forEach(card => {
-    card.classList.remove("video-active", "video-inactive");
-  });
-
-  // Apply cinematic classes
-  if (activeCard) activeCard.classList.add("video-active");
-  if (inactiveCard) inactiveCard.classList.add("video-inactive");
-
-  // Play selected video
-  activeVideo.muted = false;
-  activeVideo.controls = true;
-
-  activeVideo.play().catch(() => {});
-}
-
-/* 🎵 MUSIC CONTROL */
-function fadeIn(audio) {
-  if (!audio) return;
-
-  audio.volume = 0;
-  audio.play().catch(() => {});
-
-  let vol = 0;
-  const fade = setInterval(() => {
-    vol += 0.05;
-    if (vol >= 0.4) {
-      audio.volume = 0.4;
-      clearInterval(fade);
-    } else {
-      audio.volume = vol;
-    }
-  }, 150);
-}
-
-function stopAllMusic() {
-  [music1, music2].forEach(m => {
-    if (m) {
-      m.pause();
-      m.currentTime = 0;
-    }
-  });
-}
-
-/* ▶ VIDEO 1 */
-if (playBtn1 && mainVideo) {
-  playBtn1.addEventListener("click", () => {
-    activateVideo(mainVideo, secondVideo);
-
-    stopAllMusic();
-    if (!isMuted) fadeIn(music1);
-  });
-}
-
-/* ▶ VIDEO 2 */
-if (playBtn2 && secondVideo) {
-  playBtn2.addEventListener("click", () => {
-    activateVideo(secondVideo, mainVideo);
-
-    stopAllMusic();
-    if (!isMuted) fadeIn(music2);
-  });
-}
-
-/* 🔇 MUTE TOGGLE */
-if (muteToggle) {
-  muteToggle.addEventListener("click", () => {
-    isMuted = !isMuted;
-
-    if (isMuted) {
-      stopAllMusic();
-      muteToggle.innerText = "🔇 SOUND OFF";
-    } else {
-      muteToggle.innerText = "🔊 SOUND ON";
-
-      // resume correct music
-      if (mainVideo && !mainVideo.paused) fadeIn(music1);
-      if (secondVideo && !secondVideo.paused) fadeIn(music2);
-    }
-  });
-}
-
-
-/* =========================
-   PAUSE BUTTONS
-========================= */
-const pauseBtn1 = document.getElementById("pauseBtn1");
-const pauseBtn2 = document.getElementById("pauseBtn2");
-
-if (pauseBtn1 && mainVideo) {
-  pauseBtn1.addEventListener("click", () => {
-    mainVideo.pause();
-  });
-}
-
-if (pauseBtn2 && secondVideo) {
-  pauseBtn2.addEventListener("click", () => {
-    secondVideo.pause();
-  });
-}
 function formatTime(sec) {
+  if (isNaN(sec) || sec === Infinity) return "0:00";
   const m = Math.floor(sec / 60);
   const s = Math.floor(sec % 60);
   return `${m}:${s < 10 ? "0" : ""}${s}`;
 }
 
-const time1 = document.getElementById("time1");
-const time2 = document.getElementById("time2");
-
-if (mainVideo && time1) {
-  mainVideo.addEventListener("timeupdate", () => {
-    time1.innerText =
-      formatTime(mainVideo.currentTime) + " / " +
-      formatTime(mainVideo.duration || 0);
-  });
+function fadeIn(audio) {
+  if (!audio) return;
+  audio.volume = 0;
+  audio.play().catch(() => {});
+  let vol = 0;
+  const fade = setInterval(() => {
+    vol = Math.min(vol + 0.05, 0.4);
+    audio.volume = vol;
+    if (vol >= 0.4) clearInterval(fade);
+  }, 150);
 }
 
-if (secondVideo && time2) {
-  secondVideo.addEventListener("timeupdate", () => {
-    time2.innerText =
-      formatTime(secondVideo.currentTime) + " / " +
-      formatTime(secondVideo.duration || 0);
-  });
+function stopAllMusic() {
+  [music1, music2].forEach(m => { if (m) { m.pause(); m.currentTime = 0; } });
 }
+
+function syncCenterOverlay(video, overlay) {
+  if (!overlay) return;
+  if (video.paused) {
+    overlay.classList.remove("yt-hidden");
+  } else {
+    overlay.classList.add("yt-hidden");
+  }
+}
+
+function togglePlayPause(video, music, overlay) {
+  if (!video) return;
+  if (video.paused) {
+    // Pause the other video + its music
+    [mainVideo, secondVideo].forEach(v => { if (v && v !== video) v.pause(); });
+    stopAllMusic();
+
+    video.play().catch(() => {});
+    if (music) fadeIn(music);
+  } else {
+    video.pause();
+    if (music) music.pause();
+  }
+}
+
+function setupPlayer({ video, music, playWithSoundBtn, playPauseBtn, centerBtn, centerOverlay, timeEl, progressBar, progressFill, progressThumb, volBtn, fullscreenBtn }) {
+  if (!video) return;
+
+  // Click on video itself
+  video.addEventListener("click", () => togglePlayPause(video, music, centerOverlay));
+
+  // Center big button
+  if (centerBtn) centerBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    togglePlayPause(video, music, centerOverlay);
+  });
+
+  // Bottom bar play/pause button
+  if (playPauseBtn) playPauseBtn.addEventListener("click", () => togglePlayPause(video, music, centerOverlay));
+
+  // "PLAY WITH SOUND" button
+  if (playWithSoundBtn) playWithSoundBtn.addEventListener("click", () => {
+    [mainVideo, secondVideo].forEach(v => { if (v && v !== video) v.pause(); });
+    stopAllMusic();
+
+    video.play().catch(() => {});
+    if (music) fadeIn(music);
+  });
+
+  // Sync button icons + center overlay on play/pause
+  video.addEventListener("play", () => {
+    if (playPauseBtn) playPauseBtn.innerHTML = PAUSE_SVG;
+    syncCenterOverlay(video, centerOverlay);
+    // update center button icon to pause
+    if (centerBtn) {
+      const svg = centerBtn.querySelector("svg");
+      if (svg) svg.outerHTML = `<svg class="w-9 h-9 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>`;
+    }
+  });
+  video.addEventListener("pause", () => {
+    if (playPauseBtn) playPauseBtn.innerHTML = PLAY_SVG;
+    syncCenterOverlay(video, centerOverlay);
+    // update center button icon to play
+    if (centerBtn) {
+      const svg = centerBtn.querySelector("svg");
+      if (svg) svg.outerHTML = `<svg class="w-9 h-9 text-white ml-1" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>`;
+    }
+  });
+
+  // Progress bar + time
+  video.addEventListener("timeupdate", () => {
+    const pct = video.duration ? (video.currentTime / video.duration) * 100 : 0;
+    if (progressFill)  progressFill.style.width  = pct + "%";
+    if (progressThumb) progressThumb.style.left   = pct + "%";
+    if (timeEl) timeEl.textContent = formatTime(video.currentTime) + " / " + formatTime(video.duration);
+  });
+
+  // Seek on progress bar click
+  if (progressBar) {
+    progressBar.addEventListener("click", (e) => {
+      const rect = progressBar.getBoundingClientRect();
+      const pct  = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      if (video.duration) video.currentTime = pct * video.duration;
+    });
+
+    // Drag to seek
+    let dragging = false;
+    progressBar.addEventListener("mousedown", () => { dragging = true; });
+    document.addEventListener("mousemove", (e) => {
+      if (!dragging) return;
+      const rect = progressBar.getBoundingClientRect();
+      const pct  = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      if (video.duration) video.currentTime = pct * video.duration;
+    });
+    document.addEventListener("mouseup", () => { dragging = false; });
+  }
+
+  // Volume toggle (video element mute)
+  if (volBtn) {
+    volBtn.addEventListener("click", () => {
+      if (!music) return;
+      music.muted = !music.muted;
+      volBtn.innerHTML = music.muted ? VOL_OFF : VOL_ON;
+    });
+  }
+
+  // Fullscreen
+  if (fullscreenBtn) {
+    fullscreenBtn.addEventListener("click", () => {
+      if      (video.requestFullscreen)       video.requestFullscreen();
+      else if (video.webkitRequestFullscreen)  video.webkitRequestFullscreen();
+    });
+  }
+}
+
+// Wire up Video 1
+setupPlayer({
+  video:           mainVideo,
+  music:           music1,
+  playWithSoundBtn: document.getElementById("playBtn"),
+  playPauseBtn:    document.getElementById("playPauseBtn1"),
+  centerBtn:       document.getElementById("centerBtn1"),
+  centerOverlay:   document.getElementById("centerOverlay1"),
+  timeEl:          document.getElementById("time1"),
+  progressBar:     document.getElementById("progress1"),
+  progressFill:    document.getElementById("progressFill1"),
+  progressThumb:   document.getElementById("progressThumb1"),
+  volBtn:          document.getElementById("volBtn1"),
+  fullscreenBtn:   document.getElementById("fullscreenBtn1"),
+});
+
+// Wire up Video 2
+setupPlayer({
+  video:           secondVideo,
+  music:           music2,
+  playWithSoundBtn: document.getElementById("playBtn2"),
+  playPauseBtn:    document.getElementById("playPauseBtn2"),
+  centerBtn:       document.getElementById("centerBtn2"),
+  centerOverlay:   document.getElementById("centerOverlay2"),
+  timeEl:          document.getElementById("time2"),
+  progressBar:     document.getElementById("progress2"),
+  progressFill:    document.getElementById("progressFill2"),
+  progressThumb:   document.getElementById("progressThumb2"),
+  volBtn:          document.getElementById("volBtn2"),
+  fullscreenBtn:   document.getElementById("fullscreenBtn2"),
+});
+
 
 
 

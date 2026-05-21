@@ -97,20 +97,44 @@
           <a href="#methodology" class="hover:text-white">METHODOLOGY</a>
         </nav>
 
-        <!-- CTA -->
+        <!-- CTA (desktop) -->
         <button
           onclick="
             document
               .getElementById('contact')
               .scrollIntoView({ behavior: 'smooth' })
           "
-          class="relative bg-gradient-to-r from-cyan-400 to-blue-500 text-black px-6 py-2 text-xs font-bold tracking-widest rounded-md transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(34,211,238,0.6)]"
+          class="hidden md:block relative bg-gradient-to-r from-cyan-400 to-blue-500 text-black px-6 py-2 text-xs font-bold tracking-widest rounded-md transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(34,211,238,0.6)]"
         >
           <span class="relative z-10">OPTIMIZE MY BUSINESS</span>
           <span
             class="absolute inset-0 rounded-md bg-white/10 opacity-0 hover:opacity-100 transition"
           ></span>
         </button>
+
+        <!-- Hamburger (mobile) -->
+        <button id="menu-toggle" class="md:hidden text-white p-2 focus:outline-none" aria-label="Toggle menu">
+          <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden bg-[#030712]/95 backdrop-blur-md border-t border-white/10 px-6 py-6">
+        <nav class="flex flex-col gap-5 text-xs tracking-widest text-gray-400 mb-6">
+          <a href="#" class="text-cyan-400">HOME</a>
+          <a href="#services" class="hover:text-white transition">SERVICES</a>
+          <a href="#about" class="hover:text-white transition">ABOUT</a>
+          <a href="#methodology" class="hover:text-white transition">METHODOLOGY</a>
+        </nav>
+        <button
+          onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }); document.getElementById('mobile-menu').classList.add('hidden');"
+          class="w-full bg-gradient-to-r from-cyan-400 to-blue-500 text-black px-6 py-3 text-xs font-bold tracking-widest rounded-md"
+        >OPTIMIZE MY BUSINESS</button>
       </div>
     </header>
 
@@ -118,13 +142,13 @@
     <canvas id="ai-bg"></canvas>
 
     <!-- HERO -->
-    <section class="pt-40 pb-16 relative">
+    <section class="pt-28 md:pt-40 pb-10 md:pb-16 relative">
       <!-- Glow background -->
       <div
         class="absolute right-0 top-1/2 w-[600px] h-[600px] bg-cyan-500/20 blur-[120px] rounded-full"
       ></div>
 
-      <div class="w-full px-20 grid md:grid-cols-2 gap-10 items-center">
+      <div class="w-full px-4 md:px-20 grid md:grid-cols-2 gap-10 items-center">
         <!-- LEFT -->
         <div class="slide-in-left delay-150">
           <p class="text-cyan-400 tracking-[0.3em] text-xs mb-6">
@@ -160,7 +184,7 @@
         <div class="slide-in-right delay-300">
           <img
             src="https://png.pngtree.com/thumb_back/fh260/background/20250423/pngtree-futuristic-ai-technology-source-and-related-content-image_17208471.jpg?q=800&w=100000"
-            class="rounded-xl opacity-100 glow w-960 h-96"
+            class="rounded-xl opacity-100 glow w-full h-64 md:h-96 object-cover"
           />
         </div>
       </div>
@@ -196,7 +220,7 @@
         class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-cyan-500/10 blur-[120px]"
       ></div>
 
-      <div class="w-full px-20 relative z-10">
+      <div class="w-full px-4 md:px-20 relative z-10">
         <!-- Header -->
         <div class="mb-14 text-left reveal">
           <p class="text-cyan-400 tracking-[0.5em] text-sm font-semibold mb-3">
@@ -325,7 +349,7 @@
       id="testimonials"
       class="py-10 bg-[#030712] border-t border-white/10"
     >
-      <div class="w-full px-20">
+      <div class="w-full px-4 md:px-20">
         <!-- Title -->
         <div class="text-center mb-16">
           <h2
@@ -394,7 +418,7 @@
 
     <!-- METHODOLOGY -->
     <section id="methodology" class="py-20 border-t border-white/10 reveal">
-      <div class="w-full px-20">
+      <div class="w-full px-4 md:px-20">
         <div class="mb-10 text-left reveal delay-150">
           <p
             class="text-cyan-400 tracking-[0.5em] text-sm md:text-base font-semibold mb-3"
@@ -493,7 +517,7 @@
 
     <!-- ABOUT -->
     <section id="about" class="py-20 border-t border-white/10">
-      <div class="w-full px-20">
+      <div class="w-full px-4 md:px-20">
         <!-- Title -->
         <div class="mb-16 reveal">
           <p class="text-cyan-400 tracking-[0.5em] text-sm font-semibold mb-3">
@@ -735,7 +759,7 @@
         class="absolute left-1/2 -translate-x-1/2 top-0 w-[700px] h-[300px] bg-cyan-500/10 blur-[120px]"
       ></div>
 
-      <div class="w-full px-20 relative z-10">
+      <div class="w-full px-4 md:px-20 relative z-10">
         <!-- HEADER -->
         <div class="mb-16 max-w-2xl reveal">
           <p class="text-cyan-400 tracking-[0.5em] text-sm font-semibold mb-4">
@@ -855,5 +879,24 @@
     </script>
 
     <script src="js/script.js"></script>
+
+    <script>
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const iconOpen = document.getElementById('icon-open');
+      const iconClose = document.getElementById('icon-close');
+      menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        iconOpen.classList.toggle('hidden');
+        iconClose.classList.toggle('hidden');
+      });
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          iconOpen.classList.remove('hidden');
+          iconClose.classList.add('hidden');
+        });
+      });
+    </script>
   </body>
 </html>

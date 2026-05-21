@@ -435,6 +435,79 @@ canvas {
   to {
     transform: translateX(-50%);
   }
-  
+}
+
+/* ── YouTube-style video controls ────────────────── */
+.yt-controls {
+  background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.3) 55%, transparent 100%);
+}
+
+.yt-progress-bar {
+  transition: height 0.12s ease;
+}
+.yt-progress-bar:hover {
+  height: 5px !important;
+}
+
+.yt-thumb {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+.yt-progress-bar:hover .yt-thumb {
+  opacity: 1;
+}
+
+/* Center overlay: visible when paused, hidden when playing */
+.yt-center {
+  opacity: 1;
+  transition: opacity 0.25s ease;
+  pointer-events: auto;
+}
+.yt-center.yt-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+/* Always show center overlay on hover */
+.video-card:hover .yt-center.yt-hidden {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── Mobile Responsive ────────────────────────────── */
+@media (max-width: 768px) {
+  .cta-section {
+    padding: 60px 20px;
+  }
+
+  .cta-form {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .cta-input {
+    border-right: 1px solid var(--border);
+    width: 100%;
+  }
+
+  .cta-submit {
+    width: 100%;
+    padding: 14px 20px;
+  }
+
+  .preview-video {
+    height: 180px;
+  }
+
+  .metric-card h3 {
+    font-size: 1.5rem;
+  }
+
+  .eq-strip {
+    margin: 30px 0;
+  }
+
+  .entropix-text {
+    letter-spacing: 0.1em;
+  }
 }
  
