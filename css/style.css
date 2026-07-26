@@ -659,23 +659,48 @@ body {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  scroll-snap-type: x mandatory;
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
 }
 .mobile-stat-strip::-webkit-scrollbar { display: none; }
 
 .mobile-stat-track {
   display: flex;
   gap: 12px;
-  padding: 4px 24px 8px;
+  padding: 4px 32px 12px;
   width: max-content;
 }
 
 .msc-card {
-  width: 140px;
+  width: 148px;
   flex-shrink: 0;
+  scroll-snap-align: start;
   border-left: 2px solid rgba(168, 85, 247, 0.45);
   text-align: left;
+  cursor: grab;
+}
+.msc-card:active { cursor: grabbing; }
+
+/* swipe hint label */
+.mobile-stat-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  color: rgba(168, 85, 247, 0.55);
+  margin-top: 6px;
+  animation: hintPulse 2.5s ease-in-out infinite;
+}
+@keyframes hintPulse {
+  0%, 100% { opacity: 0.55; }
+  50%       { opacity: 1; }
+}
+.mobile-stat-hint svg {
+  width: 14px;
+  height: 14px;
 }
 
 /* ── Social icons ───────────────────────────────────── */
