@@ -159,12 +159,12 @@
 
         <!-- body -->
         <p class="hero-body max-w-sm mx-auto mb-12">
-          Harnessing AI and cloud technologies for next&#8209;generation enterprise intelligence.
+          Building intelligent systems grounded in mathematics — where probability, optimisation, and inference meet real&#8209;world AI.
         </p>
 
         <!-- CTAs -->
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
-          <a href="demo.html" class="hero-cta-solid">
+          <a href="#contact" class="hero-cta-solid">
             Get Started
           </a>
           <a href="#services" class="hero-cta">
@@ -310,13 +310,14 @@
         <!-- PRODUCT GRID -->
         <div class="grid md:grid-cols-2 gap-6">
 
-          <!-- EIGENPILOT — featured, spans full width -->
-          <div class="md:col-span-2 eigenpilot-card group relative rounded-3xl overflow-hidden reveal delay-1">
-            <div class="absolute -top-28 -left-28 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl pointer-events-none group-hover:bg-purple-500/28 transition duration-700"></div>
+          <!-- ROW 1: LIVE PRODUCTS -->
 
-            <div class="relative z-10 p-8 md:p-10 h-full flex flex-col">
-              <!-- top bar -->
-              <div class="flex items-start justify-between mb-8 gap-4">
+          <!-- EIGENPILOT -->
+          <div class="eigenpilot-card group relative rounded-3xl overflow-hidden reveal delay-1 flex flex-col">
+            <div class="absolute -top-20 -left-20 w-72 h-72 bg-purple-600/20 rounded-full blur-3xl pointer-events-none group-hover:bg-purple-500/28 transition duration-700"></div>
+
+            <div class="relative z-10 p-8 h-full flex flex-col">
+              <div class="flex items-start justify-between mb-6 gap-4">
                 <div class="flex items-center gap-3">
                   <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-lg font-bold text-white shadow-lg flex-shrink-0">λ</div>
                   <div>
@@ -327,89 +328,94 @@
                 <span class="live-badge flex-shrink-0">● LIVE</span>
               </div>
 
-              <!-- headline -->
-              <h3 class="text-2xl md:text-3xl font-bold text-white mb-3 leading-tight">
+              <h3 class="text-xl font-bold text-white mb-3 leading-tight">
                 Your AI Co-Pilot.<br>
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-blue-300">Mathematically Precise.</span>
               </h3>
-              <p class="text-gray-400 text-sm leading-relaxed mb-8 max-w-lg">
-                EigenPilot is an autonomous AI agent platform that plans, reasons, and executes complex multi-step workflows — powered by probabilistic inference and gradient-optimised decision models, purpose-built for ASEAN enterprises.
+              <p class="text-gray-400 text-sm leading-relaxed mb-6 flex-1">
+                An autonomous AI agent platform that plans, reasons, and executes complex multi-step workflows — powered by probabilistic inference and gradient-optimised decision models.
               </p>
 
-              <!-- feature chips -->
-              <div class="grid grid-cols-2 gap-3 mb-8">
+              <div class="grid grid-cols-2 gap-2 mb-6">
                 <div class="ep-chip">⚡ Autonomous Execution</div>
                 <div class="ep-chip">🧠 Multi-step Reasoning</div>
                 <div class="ep-chip">📊 Real-time Inference</div>
                 <div class="ep-chip">🌐 Enterprise Grade</div>
               </div>
 
-              <!-- CTA -->
               <div class="mt-auto">
-                <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" class="ep-cta">
-                  Join the Waitlist <span aria-hidden="true">→</span>
+                <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" class="ep-cta w-full justify-center">
+                  Join the Waitlist →
                 </button>
               </div>
             </div>
           </div>
 
-          <!-- HILBERT SPACE — coming soon -->
-          <div class="hilbert-card group relative rounded-3xl overflow-hidden reveal delay-2 flex flex-col">
-            <div class="absolute -bottom-20 -right-20 w-56 h-56 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+          <!-- VECTORFLOW -->
+          <div class="voiceflow-card group relative rounded-3xl overflow-hidden reveal delay-2 flex flex-col">
+            <div class="absolute -top-16 -right-16 w-64 h-64 bg-pink-600/10 rounded-full blur-3xl pointer-events-none"></div>
 
             <div class="relative z-10 p-8 h-full flex flex-col">
-              <div class="mb-6">
-                <span class="coming-soon-badge">COMING SOON</span>
+              <div class="flex items-start justify-between mb-6 gap-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-pink-500 to-purple-500 flex items-center justify-center text-lg font-bold text-white shadow-lg flex-shrink-0">🎙</div>
+                  <div>
+                    <div class="text-white text-xl font-bold tracking-wide">VectorFlow</div>
+                    <div class="text-pink-400 text-xs tracking-[0.25em] mt-0.5">by Entropix Solutions</div>
+                  </div>
+                </div>
+                <span class="live-badge flex-shrink-0">● LIVE</span>
               </div>
 
-              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600/30 to-purple-600/20 border border-blue-500/20 flex items-center justify-center text-2xl mb-6 text-blue-300">
-                ℋ
-              </div>
-
-              <h3 class="text-xl font-bold text-white mb-3">Hilbert Space</h3>
-              <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-1">
-                A high-dimensional mathematical computation environment for AI research — quantum-inspired optimisation, functional analysis, and advanced distributional modelling at scale.
+              <h3 class="text-xl font-bold text-white mb-3 leading-tight">
+                Brain for Speech.<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-purple-300">LLM Agent Ready.</span>
+              </h3>
+              <p class="text-gray-400 text-sm leading-relaxed mb-6 flex-1">
+                VectorFlow processes, understands, and orchestrates voice into intelligent agent workflows with real-time semantic understanding and context-aware language modelling.
               </p>
 
-              <div class="flex flex-wrap gap-2 mb-8">
-                <span class="hilbert-chip">Quantum-inspired</span>
-                <span class="hilbert-chip">Functional Analysis</span>
-                <span class="hilbert-chip">Research-grade</span>
-              </div>
-
-              <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" class="hilbert-notify w-full">
-                Get Notified →
-              </button>
-            </div>
-          </div>
-
-          <!-- VOICE FLOW — coming soon -->
-          <div class="voiceflow-card group relative rounded-3xl overflow-hidden reveal delay-3 flex flex-col">
-            <div class="absolute -top-16 -left-16 w-56 h-56 bg-pink-600/8 rounded-full blur-3xl pointer-events-none"></div>
-
-            <div class="relative z-10 p-8 h-full flex flex-col">
-              <div class="mb-6">
-                <span class="coming-soon-badge vf-badge">COMING SOON</span>
-              </div>
-
-              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-600/25 to-purple-600/20 border border-pink-500/20 flex items-center justify-center text-2xl mb-6">
-                🎙
-              </div>
-
-              <h3 class="text-xl font-bold text-white mb-3">VectorFlow</h3>
-              <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-1">
-                The brain for speech LLM agents — VectorFlow processes, understands, and orchestrates voice into intelligent agent workflows with real-time semantic understanding and context-aware language modelling.
-              </p>
-
-              <div class="flex flex-wrap gap-2 mb-8">
+              <div class="flex flex-wrap gap-2 mb-6">
                 <span class="hilbert-chip vf-chip">Speech LLM</span>
                 <span class="hilbert-chip vf-chip">Vector Semantics</span>
                 <span class="hilbert-chip vf-chip">Agent Orchestration</span>
               </div>
 
-              <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" class="hilbert-notify vf-notify w-full">
-                Get Notified →
-              </button>
+              <div class="mt-auto">
+                <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" class="ep-cta w-full justify-center">
+                  Join the Waitlist →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ROW 2: HILBERT SPACE — coming soon, full width horizontal -->
+          <div class="md:col-span-2 hilbert-card group relative rounded-3xl overflow-hidden reveal delay-3">
+            <div class="absolute -bottom-16 left-1/2 -translate-x-1/2 w-96 h-48 bg-blue-600/8 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10 p-8 md:flex md:items-center md:gap-12">
+              <div class="flex-shrink-0 mb-6 md:mb-0">
+                <span class="coming-soon-badge block mb-4">COMING SOON</span>
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600/30 to-purple-600/20 border border-blue-500/20 flex items-center justify-center text-3xl text-blue-300">
+                  ℋ
+                </div>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-xl font-bold text-white mb-2">Hilbert Space</h3>
+                <p class="text-gray-500 text-sm leading-relaxed mb-4 max-w-2xl">
+                  A high-dimensional mathematical computation environment for AI research — quantum-inspired optimisation, functional analysis, and advanced distributional modelling at scale.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="hilbert-chip">Quantum-inspired</span>
+                  <span class="hilbert-chip">Functional Analysis</span>
+                  <span class="hilbert-chip">Research-grade</span>
+                </div>
+              </div>
+              <div class="mt-6 md:mt-0 md:flex-shrink-0">
+                <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" class="hilbert-notify">
+                  Get Notified →
+                </button>
+              </div>
             </div>
           </div>
 
@@ -915,7 +921,7 @@
             </div>
 
             <!-- Right: form -->
-            <form id="contact-form" onsubmit="handleContactSubmit(event)" novalidate>
+            <form id="contact-form" onsubmit="handleContactSubmit(event)">
               <input type="hidden" name="access_key" value="feeb8584-221d-4fdc-b750-940d604d876a" />
               <input type="hidden" name="subject" value="New Enquiry — Entropix Solutions" />
               <input type="checkbox" name="botcheck" style="display:none" />
@@ -926,7 +932,7 @@
                 </div>
                 <div>
                   <label class="cf-label">Company</label>
-                  <input type="text" name="company" placeholder="Company" class="cf-input" />
+                  <input type="text" name="company" placeholder="Company" class="cf-input" required />
                 </div>
               </div>
               <div class="mb-4">
@@ -935,21 +941,21 @@
               </div>
               <div class="mb-4">
                 <label class="cf-label">I'm interested in</label>
-                <select name="service" class="cf-select">
+                <select name="service" class="cf-select" required>
                   <option value="">Select a product…</option>
                   <option>EigenPilot — Join Waitlist</option>
                   <option>Hilbert Space — Early Access</option>
-                  <option>VectorFlow — Early Access</option>
+                  <option>VectorFlow — Join Waitlist</option>
                   <option>General Inquiry</option>
                   <option>Partnership / Enterprise</option>
                 </select>
               </div>
               <div class="mb-6">
                 <label class="cf-label">Message</label>
-                <textarea name="message" placeholder="Describe your challenge or what you're looking to achieve…" class="cf-textarea"></textarea>
+                <textarea name="message" placeholder="Describe your challenge or what you're looking to achieve…" class="cf-textarea" required></textarea>
               </div>
               <button type="submit" class="cf-submit" id="cf-btn">
-                Send Message →
+                Join the Waitlist
               </button>
               <p id="cf-success" class="hidden mt-4 text-center text-sm text-purple-300 tracking-wide">
                 ✓ Message sent! We'll be in touch within 24 hours.
