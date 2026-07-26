@@ -1156,6 +1156,26 @@ canvas {
 
 /* ── Mobile Responsive ────────────────────────────── */
 @media (max-width: 768px) {
+  /* Eyebrow text — reduce letter-spacing and allow wrapping */
+  .hero-eyebrow {
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    flex-wrap: wrap;
+    gap: 6px;
+    row-gap: 4px;
+    text-align: center;
+    line-height: 1.8;
+  }
+
+  /* Make mobile stat strip more prominent */
+  .mobile-stat-strip {
+    margin-top: 8px;
+  }
+
+  .msc-card {
+    width: 130px;
+  }
+
   .cta-section {
     padding: 60px 20px;
   }
