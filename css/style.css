@@ -660,15 +660,13 @@ body {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   scroll-snap-type: x mandatory;
-  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
 }
 .mobile-stat-strip::-webkit-scrollbar { display: none; }
 
 .mobile-stat-track {
   display: flex;
   gap: 12px;
-  padding: 4px 32px 12px;
+  padding: 4px 20px 12px;
   width: max-content;
 }
 
