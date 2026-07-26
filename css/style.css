@@ -653,6 +653,31 @@ body {
   background: rgba(236, 72, 153, 0.08);
 }
 
+/* ── Mobile stat strip ──────────────────────────────── */
+.mobile-stat-strip {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+.mobile-stat-strip::-webkit-scrollbar { display: none; }
+
+.mobile-stat-track {
+  display: flex;
+  gap: 12px;
+  padding: 4px 24px 8px;
+  width: max-content;
+}
+
+.msc-card {
+  width: 140px;
+  flex-shrink: 0;
+  border-left: 2px solid rgba(168, 85, 247, 0.45);
+  text-align: left;
+}
+
 /* ── Social icons ───────────────────────────────────── */
 .social-icon {
   color: rgba(255, 255, 255, 0.35);
