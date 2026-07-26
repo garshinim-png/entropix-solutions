@@ -682,26 +682,6 @@ body {
 }
 .msc-card:active { cursor: grabbing; }
 
-/* swipe hint label */
-.mobile-stat-hint {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-size: 0.58rem;
-  letter-spacing: 0.18em;
-  color: rgba(168, 85, 247, 0.55);
-  margin-top: 6px;
-  animation: hintPulse 2.5s ease-in-out infinite;
-}
-@keyframes hintPulse {
-  0%, 100% { opacity: 0.55; }
-  50%       { opacity: 1; }
-}
-.mobile-stat-hint svg {
-  width: 14px;
-  height: 14px;
-}
 
 /* ── Social icons ───────────────────────────────────── */
 .social-icon {
