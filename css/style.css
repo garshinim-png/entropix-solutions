@@ -654,6 +654,13 @@ body {
 }
 
 /* ── Mobile stat strip ──────────────────────────────── */
+.mobile-stat-section {
+  width: 100%;
+  overflow: hidden;
+  padding: 16px 0 8px;
+  background: #080318;
+}
+
 .mobile-stat-strip {
   width: 100%;
   overflow-x: auto;
