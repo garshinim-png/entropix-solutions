@@ -697,6 +697,7 @@ body {
   color: #a855f7;
   transform: translateY(-2px);
 }
+.whatsapp-icon:hover { color: #25d366; }
 
 /* ── Contact form (glassmorphism) ──────────────────── */
 .contact-glass {
