@@ -17,6 +17,18 @@
   </head>
 
   <body class="text-white">
+    <!-- PROMO BANNER -->
+    <div id="promo-banner" class="promo-banner">
+      <p class="promo-text">
+        ⚡ MyInvois e-invoicing mandate is live — EigenPilot handles compliance for SMEs automatically.
+        <span class="promo-divider">·</span>
+        <strong class="promo-highlight">14-day free trial</strong>
+        <span class="promo-divider">·</span>
+        <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" class="promo-cta">Start Free Trial →</button>
+      </p>
+      <button onclick="document.getElementById('promo-banner').style.display='none'" class="promo-close" aria-label="Close">✕</button>
+    </div>
+
     <!-- HEADER -->
     <header
       class="fixed w-full z-50 bg-[#080318]/80 backdrop-blur-md border-b border-white/10"
@@ -51,7 +63,7 @@
           "
           class="hidden md:block relative bg-gradient-to-r from-purple-500 to-blue-500 text-black px-6 py-2 text-xs font-bold tracking-widest rounded-md transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(168,85,247,0.6)]"
         >
-          <span class="relative z-10">OPTIMIZE MY BUSINESS</span>
+          <span class="relative z-10">BOOK A DEMO</span>
           <span
             class="absolute inset-0 rounded-md bg-white/10 opacity-0 hover:opacity-100 transition"
           ></span>
@@ -79,7 +91,7 @@
         <button
           onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }); document.getElementById('mobile-menu').classList.add('hidden');"
           class="w-full bg-gradient-to-r from-purple-500 to-blue-500 text-black px-6 py-3 text-xs font-bold tracking-widest rounded-md"
-        >OPTIMIZE MY BUSINESS</button>
+        >BOOK A DEMO</button>
       </div>
     </header>
 
@@ -145,7 +157,7 @@
         <!-- eyebrow -->
         <p class="hero-eyebrow mb-10">
           <span class="hero-dot" aria-hidden="true"></span>
-          AI &nbsp;·&nbsp; PREDICTIVE INTELLIGENCE &nbsp;·&nbsp; MATHEMATICAL SOLUTIONS
+          TRUST &nbsp;·&nbsp; HUMAN-VERIFIED AI &nbsp;·&nbsp; AGENTIC AUTOMATION
         </p>
 
         <!-- brand word -->
@@ -158,8 +170,8 @@
         <p class="hero-sub mb-10">solutions</p>
 
         <!-- body -->
-        <p class="hero-body max-w-sm mx-auto mb-12">
-          Building intelligent systems grounded in mathematics — where probability, optimisation, and inference meet real&#8209;world AI.
+        <p class="hero-body max-w-2xl mx-auto mb-12">
+          AI that never acts without you.<br>Human&#8209;verified agents built for businesses ready to automate with confidence.
         </p>
 
         <!-- CTAs -->
@@ -245,7 +257,7 @@
       </div>
     </div>
 
-    <!-- MATH AI PILLARS -->
+    <!-- HOW IT WORKS — math as technical depth, not opening claim -->
     <div class="math-pillars-row">
       <div class="math-pillar">
         <div class="mp-symbol">∇</div>
@@ -301,11 +313,11 @@
         <div class="mb-14 text-left reveal-left">
           <p class="text-purple-400 tracking-[0.5em] text-sm font-semibold mb-3">OUR PRODUCTS</p>
           <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
-            Mathematical AI.
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">Built to Deploy.</span>
+            AI That Never Acts
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">Without You.</span>
           </h2>
           <p class="text-gray-400 max-w-2xl">
-            From autonomous agents to advanced computation environments — every product is grounded in mathematical rigour.
+            One agent. Two functions. Every action approved by you first — sales automation and e-invoicing compliance bundled under a single human-verified layer, built for SMEs.
           </p>
         </div>
 
@@ -331,18 +343,18 @@
               </div>
 
               <h3 class="text-xl font-bold text-white mb-3 leading-tight">
-                Your AI Co-Pilot.<br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-blue-300">Mathematically Precise.</span>
+                Your Agent. Your Approval.<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-blue-300">Every Action, Every Time.</span>
               </h3>
               <p class="text-gray-400 text-sm leading-relaxed mb-6 flex-1">
-                An autonomous AI agent platform that plans, reasons, and executes complex multi-step workflows — powered by probabilistic inference and gradient-optimised decision models.
+                EigenPilot never executes an action without your sign-off — the only AI agent that handles both sales automation and MyInvois e-invoicing compliance under one human-verified approval layer. No IT team required.
               </p>
 
               <div class="grid grid-cols-2 gap-2 mb-6">
-                <div class="ep-chip">⚡ Autonomous Execution</div>
-                <div class="ep-chip">🧠 Multi-step Reasoning</div>
-                <div class="ep-chip">📊 Real-time Inference</div>
-                <div class="ep-chip">🌐 Enterprise Grade</div>
+                <div class="ep-chip">✅ Human Approval Gate</div>
+                <div class="ep-chip">🤝 Sales + E-Invoicing</div>
+                <div class="ep-chip">🇲🇾 MyInvois Ready</div>
+                <div class="ep-chip">🔒 Human-Verified AI</div>
               </div>
 
               <div class="mt-auto">
@@ -945,6 +957,8 @@
                 <label class="cf-label">I'm interested in</label>
                 <select name="service" class="cf-select" required>
                   <option value="">Select a product…</option>
+                  <option>EigenPilot — 14-Day Free Trial</option>
+                  <option>Book a Demo</option>
                   <option>EigenPilot — Join Waitlist</option>
                   <option>Hilbert Space — Early Access</option>
                   <option>VectorFlow — Join Waitlist</option>
