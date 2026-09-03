@@ -729,6 +729,52 @@ header { top: 50px; transition: top 0.3s; }
   background: rgba(236, 72, 153, 0.08);
 }
 
+/* ── Inducer card ───────────────────────────────────── */
+.inducer-card {
+  background: rgba(124, 92, 255, 0.04);
+  border: 1px solid rgba(100, 116, 139, 0.22);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  transition: border-color 0.4s;
+}
+.inducer-card:hover {
+  border-color: rgba(124, 92, 255, 0.35);
+}
+
+.inducer-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(62, 216, 195, 0.22);
+  background: rgba(62, 216, 195, 0.07);
+  color: rgba(62, 216, 195, 0.80);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.inducer-cta {
+  display: block;
+  padding: 11px 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(124, 92, 255, 0.40);
+  background: rgba(124, 92, 255, 0.10);
+  color: #A78BFA;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  transition: background 0.25s, border-color 0.25s;
+  text-align: center;
+}
+.inducer-cta:hover {
+  background: rgba(124, 92, 255, 0.20);
+  border-color: rgba(62, 216, 195, 0.55);
+  color: #3ED8C3;
+}
+
 /* ── Mobile stat strip ──────────────────────────────── */
 .mobile-stat-section {
   width: 100%;
