@@ -322,7 +322,7 @@
         </div>
 
         <!-- PRODUCT GRID -->
-        <div class="grid md:grid-cols-2 gap-6">
+        <div class="grid md:grid-cols-3 gap-6">
 
           <!-- ROW 1: LIVE PRODUCTS -->
 
@@ -403,8 +403,46 @@
             </div>
           </div>
 
+          <!-- THE INDUCER -->
+          <div class="inducer-card group relative rounded-3xl overflow-hidden reveal delay-3 flex flex-col">
+            <div class="absolute -top-16 -left-16 w-64 h-64 bg-amber-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10 p-8 h-full flex flex-col">
+              <div class="flex items-start justify-between mb-6 gap-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center text-lg font-bold text-white shadow-lg flex-shrink-0">⚙</div>
+                  <div>
+                    <div class="text-white text-xl font-bold tracking-wide">The Inducer</div>
+                    <div class="text-amber-400 text-xs tracking-[0.25em] mt-0.5">by Entropix Solutions</div>
+                  </div>
+                </div>
+                <span class="live-badge">● LIVE</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-white mb-3 leading-tight">
+                Automate the Boring.<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-orange-300">Build Real Workflows.</span>
+              </h3>
+              <p class="text-gray-400 text-sm leading-relaxed mb-6 flex-1">
+                A hands-on n8n automation training platform — practical lessons, pre-built workflow maps, and ready-to-import templates that eliminate repetitive tasks for SMEs without needing an IT team.
+              </p>
+
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="inducer-chip">🔧 n8n Workflows</span>
+                <span class="inducer-chip">📦 Ready Templates</span>
+                <span class="inducer-chip">🎓 Hands-on Training</span>
+              </div>
+
+              <div class="mt-auto">
+                <a href="https://garshinim-png.github.io/inducer/" target="_blank" rel="noopener" class="inducer-cta w-full text-center block">
+                  Explore The Inducer →
+                </a>
+              </div>
+            </div>
+          </div>
+
           <!-- ROW 2: HILBERT SPACE — coming soon, full width horizontal -->
-          <div class="md:col-span-2 hilbert-card group relative rounded-3xl overflow-hidden reveal delay-3">
+          <div class="md:col-span-3 hilbert-card group relative rounded-3xl overflow-hidden reveal delay-4">
             <div class="absolute -bottom-16 left-1/2 -translate-x-1/2 w-96 h-48 bg-blue-600/8 rounded-full blur-3xl pointer-events-none"></div>
 
             <div class="relative z-10 p-8 md:flex md:items-center md:gap-12">
@@ -962,6 +1000,7 @@
                   <option>EigenPilot — Join Waitlist</option>
                   <option>Hilbert Space — Early Access</option>
                   <option>VectorFlow — Join Waitlist</option>
+                  <option>The Inducer — Get Access</option>
                   <option>General Inquiry</option>
                   <option>Partnership / Enterprise</option>
                 </select>
