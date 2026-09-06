@@ -6,6 +6,15 @@
     <link rel="canonical" href="https://entropix.pro/" />
     <title>Entropix Solutions</title>
 
+    <!-- Google Analytics GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3RNVXLCX7H"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-3RNVXLCX7H');
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link
@@ -1487,6 +1496,7 @@
           });
           const data = await res.json();
           if (data.success) {
+            gtag('event', 'contact_form_submit', {event_category: 'engagement', event_label: 'web3forms_success'});
             e.target.reset();
             btn.style.display = 'none';
             ok.classList.remove('hidden');
@@ -1502,5 +1512,261 @@
         }
       }
     </script>
+
+  <!-- ── Entropix Chat Bot ─────────────────────────────── -->
+  <div id="ex-chat-bubble" onclick="exChatToggle()" aria-label="Open chat" role="button" tabindex="0">
+    <svg id="ex-chat-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <svg id="ex-close-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    <span id="ex-unread" class="ex-unread">1</span>
+  </div>
+
+  <div id="ex-chat-window" class="ex-chat-window" style="display:none">
+    <div class="ex-chat-head">
+      <div class="ex-chat-head-info">
+        <div class="ex-avatar">E</div>
+        <div>
+          <div class="ex-head-name">Entropix Assistant</div>
+          <div class="ex-head-status"><span class="ex-status-dot"></span>Online</div>
+        </div>
+      </div>
+      <button onclick="exChatToggle()" class="ex-head-close">✕</button>
+    </div>
+
+    <div id="ex-messages" class="ex-messages"></div>
+
+    <div class="ex-chips" id="ex-chips"></div>
+
+    <div class="ex-input-row">
+      <input id="ex-input" type="text" placeholder="Type a question…" autocomplete="off" onkeydown="if(event.key==='Enter')exSend()">
+      <button onclick="exSend()" class="ex-send-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <style>
+    #ex-chat-bubble{
+      position:fixed;bottom:28px;right:28px;z-index:9999;
+      width:56px;height:56px;border-radius:50%;
+      background:linear-gradient(135deg,#7C5CFF,#3b82f6);
+      display:flex;align-items:center;justify-content:center;
+      color:#fff;cursor:pointer;box-shadow:0 4px 24px rgba(124,92,255,0.45);
+      transition:transform 0.2s ease,box-shadow 0.2s ease;
+      user-select:none;
+    }
+    #ex-chat-bubble:hover{transform:scale(1.08);box-shadow:0 6px 30px rgba(124,92,255,0.6);}
+    .ex-unread{
+      position:absolute;top:-4px;right:-4px;
+      background:#ec4899;color:#fff;font-size:10px;font-weight:700;
+      width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+      border:2px solid #080318;
+    }
+    .ex-chat-window{
+      position:fixed;bottom:96px;right:28px;z-index:9998;
+      width:340px;max-height:520px;
+      background:#0f1123;border:1px solid rgba(124,92,255,0.25);
+      border-radius:20px;display:flex;flex-direction:column;
+      box-shadow:0 16px 60px rgba(0,0,0,0.6);
+      overflow:hidden;
+      font-family:'Space Grotesk',sans-serif;
+    }
+    @media(max-width:400px){.ex-chat-window{width:calc(100vw - 24px);right:12px;bottom:88px;}}
+    .ex-chat-head{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:14px 16px;
+      background:linear-gradient(135deg,rgba(124,92,255,0.18),rgba(59,130,246,0.12));
+      border-bottom:1px solid rgba(124,92,255,0.18);
+    }
+    .ex-chat-head-info{display:flex;align-items:center;gap:10px;}
+    .ex-avatar{
+      width:36px;height:36px;border-radius:10px;flex-shrink:0;
+      background:linear-gradient(135deg,#7C5CFF,#3ED8C3);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:700;font-size:15px;color:#0A0E1A;
+    }
+    .ex-head-name{font-size:13.5px;font-weight:600;color:#eaebf4;}
+    .ex-head-status{display:flex;align-items:center;gap:5px;font-size:11px;color:#9aa1c2;margin-top:1px;}
+    .ex-status-dot{width:7px;height:7px;border-radius:50%;background:#3ED8C3;box-shadow:0 0 6px #3ED8C3;}
+    .ex-head-close{background:none;border:none;color:#5f6690;font-size:14px;cursor:pointer;padding:4px;line-height:1;}
+    .ex-head-close:hover{color:#eaebf4;}
+    .ex-messages{
+      flex:1;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:10px;
+      scrollbar-width:thin;scrollbar-color:rgba(124,92,255,0.2) transparent;
+    }
+    .ex-msg{display:flex;flex-direction:column;max-width:88%;}
+    .ex-msg.bot{align-self:flex-start;}
+    .ex-msg.user{align-self:flex-end;}
+    .ex-bubble{
+      padding:10px 13px;border-radius:14px;font-size:13px;line-height:1.55;
+    }
+    .ex-msg.bot .ex-bubble{
+      background:rgba(124,92,255,0.12);border:1px solid rgba(124,92,255,0.22);
+      color:#d4d7f0;border-bottom-left-radius:4px;
+    }
+    .ex-msg.user .ex-bubble{
+      background:linear-gradient(135deg,#7C5CFF,#3b82f6);
+      color:#fff;border-bottom-right-radius:4px;
+    }
+    .ex-chips{
+      display:flex;flex-wrap:wrap;gap:7px;padding:8px 14px 10px;
+      border-top:1px solid rgba(255,255,255,0.05);
+    }
+    .ex-chip{
+      padding:6px 11px;border-radius:100px;font-size:11.5px;font-weight:500;cursor:pointer;
+      border:1px solid rgba(124,92,255,0.35);background:rgba(124,92,255,0.08);
+      color:#a78bfa;transition:background 0.2s,border-color 0.2s;white-space:nowrap;
+    }
+    .ex-chip:hover{background:rgba(124,92,255,0.2);border-color:rgba(124,92,255,0.6);}
+    .ex-input-row{
+      display:flex;align-items:center;gap:8px;padding:10px 12px;
+      border-top:1px solid rgba(255,255,255,0.06);
+    }
+    #ex-input{
+      flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(124,92,255,0.22);
+      border-radius:10px;padding:9px 12px;color:#eaebf4;font-size:13px;outline:none;
+      font-family:'Space Grotesk',sans-serif;
+    }
+    #ex-input::placeholder{color:#5f6690;}
+    #ex-input:focus{border-color:rgba(124,92,255,0.55);}
+    .ex-send-btn{
+      width:36px;height:36px;border-radius:10px;border:none;cursor:pointer;flex-shrink:0;
+      background:linear-gradient(135deg,#7C5CFF,#3b82f6);color:#fff;
+      display:flex;align-items:center;justify-content:center;
+      transition:filter 0.2s;
+    }
+    .ex-send-btn:hover{filter:brightness(1.15);}
+    .ex-typing{display:flex;gap:4px;align-items:center;padding:4px 2px;}
+    .ex-typing span{width:6px;height:6px;border-radius:50%;background:#7C5CFF;animation:exBounce 1.2s infinite;}
+    .ex-typing span:nth-child(2){animation-delay:0.2s;}
+    .ex-typing span:nth-child(3){animation-delay:0.4s;}
+    @keyframes exBounce{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-5px);}}
+  </style>
+
+  <script>
+    const EX_FAQ = [
+      {
+        keys:["eigenpilot","eigen pilot","agent","sales","invoic","e-invoic","myinvois","approval"],
+        q:"What is EigenPilot?",
+        a:"EigenPilot is our flagship AI agent — it handles sales automation and MyInvois e-invoicing compliance under one human-verified approval layer. Every action requires your sign-off. No IT team needed. <a href='#contact' onclick='exChatToggle()' style='color:#a78bfa;'>Join the waitlist →</a>"
+      },
+      {
+        keys:["vectorflow","vector flow","voice","speech","llm","audio"],
+        q:"What is VectorFlow?",
+        a:"VectorFlow is the brain for speech LLM agents — it processes, understands, and orchestrates voice into intelligent agent workflows with real-time semantic understanding."
+      },
+      {
+        keys:["inducer","n8n","automation","workflow","template","training"],
+        q:"What is The Inducer?",
+        a:"The Inducer is our hands-on n8n automation training platform. Practical lessons, pre-built workflow maps, and ready-to-import JSON templates to eliminate repetitive tasks for SMEs. <a href='/inducer.html' style='color:#a78bfa;'>Explore it →</a>"
+      },
+      {
+        keys:["hilbert","hilbert space","coming soon","research","quantum","mathematical"],
+        q:"What is Hilbert Space?",
+        a:"Hilbert Space is our next product — coming soon. It sits at the intersection of advanced mathematics and AI, bringing research-grade intelligence to enterprise decision-making."
+      },
+      {
+        keys:["price","pricing","cost","free","trial","paid","plan"],
+        q:"What's the pricing?",
+        a:"EigenPilot offers a 14-day free trial. The Inducer is free to explore. For custom pricing on enterprise or production deployments, <a href='#contact' onclick='exChatToggle()' style='color:#a78bfa;'>reach out to us →</a>"
+      },
+      {
+        keys:["contact","email","reach","talk","connect","human","team","demo","book"],
+        q:"How do I contact Entropix?",
+        a:"You can email us at <a href='mailto:connect@entropix.pro' style='color:#a78bfa;'>connect@entropix.pro</a>, WhatsApp <a href='https://wa.me/601173616401' target='_blank' style='color:#a78bfa;'>+60 11-7361 6401</a>, or fill in our <a href='#contact' onclick='exChatToggle()' style='color:#a78bfa;'>contact form →</a>"
+      },
+      {
+        keys:["what","who","about","entropix","company","do you"],
+        q:"What does Entropix do?",
+        a:"Entropix Solutions builds human-verified AI agents and automation tools for businesses. We focus on AI that never acts without your approval — built for SMEs ready to automate with confidence."
+      },
+    ];
+
+    const EX_CHIPS = [
+      "What is EigenPilot?",
+      "What is The Inducer?",
+      "Pricing & Trial",
+      "Contact Entropix",
+    ];
+
+    let exOpen = false;
+
+    function exChatToggle(){
+      exOpen = !exOpen;
+      document.getElementById('ex-chat-window').style.display = exOpen ? 'flex' : 'none';
+      document.getElementById('ex-chat-icon').style.display = exOpen ? 'none' : 'block';
+      document.getElementById('ex-close-icon').style.display = exOpen ? 'block' : 'none';
+      document.getElementById('ex-unread').style.display = 'none';
+      if(exOpen){
+        gtag('event', 'chat_open', {event_category: 'chatbot', event_label: 'bubble_click'});
+        if(document.getElementById('ex-messages').children.length === 0) exInit();
+      }
+    }
+
+    function exInit(){
+      exBotMsg("👋 Hi! I'm the Entropix assistant. Ask me anything about our products, pricing, or how to get started.");
+      exRenderChips();
+    }
+
+    function exBotMsg(html, delay){
+      const msgs = document.getElementById('ex-messages');
+      const typing = document.createElement('div');
+      typing.className = 'ex-msg bot';
+      typing.innerHTML = '<div class="ex-bubble"><div class="ex-typing"><span></span><span></span><span></span></div></div>';
+      msgs.appendChild(typing);
+      msgs.scrollTop = msgs.scrollHeight;
+      setTimeout(function(){
+        typing.innerHTML = '<div class="ex-bubble">'+html+'</div>';
+        msgs.scrollTop = msgs.scrollHeight;
+      }, delay || 600);
+    }
+
+    function exUserMsg(text){
+      const msgs = document.getElementById('ex-messages');
+      const el = document.createElement('div');
+      el.className = 'ex-msg user';
+      el.innerHTML = '<div class="ex-bubble">'+text+'</div>';
+      msgs.appendChild(el);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function exRenderChips(){
+      const c = document.getElementById('ex-chips');
+      c.innerHTML = EX_CHIPS.map(function(q){
+        return '<button class="ex-chip" onclick="exChipClick(this,\''+q.replace(/'/g,"\\'")+'\')">' + q + '</button>';
+      }).join('');
+    }
+
+    function exChipClick(btn, q){
+      exUserMsg(q);
+      document.getElementById('ex-chips').innerHTML = '';
+      gtag('event', 'chat_chip_click', {event_category: 'chatbot', event_label: q});
+      exAnswer(q.toLowerCase());
+    }
+
+    function exSend(){
+      const inp = document.getElementById('ex-input');
+      const val = inp.value.trim();
+      if(!val) return;
+      inp.value = '';
+      exUserMsg(val);
+      document.getElementById('ex-chips').innerHTML = '';
+      gtag('event', 'chat_message_sent', {event_category: 'chatbot', event_label: val});
+      exAnswer(val.toLowerCase());
+    }
+
+    function exAnswer(text){
+      const match = EX_FAQ.find(function(f){
+        return f.keys.some(function(k){ return text.indexOf(k) !== -1; });
+      });
+      if(match){
+        exBotMsg(match.a, 700);
+      } else {
+        exBotMsg("I'm not sure about that one — our team can help. <a href='mailto:connect@entropix.pro' style='color:#a78bfa;'>connect@entropix.pro</a> or <a href='https://wa.me/601173616401' target='_blank' style='color:#a78bfa;'>WhatsApp us →</a>", 700);
+      }
+      setTimeout(exRenderChips, 1400);
+    }
+  </script>
+  <!-- ── End Chat Bot ───────────────────────────────────── -->
+
   </body>
 </html>
